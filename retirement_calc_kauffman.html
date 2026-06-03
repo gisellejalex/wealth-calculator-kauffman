@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Retirement Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.14);
+    --text: #0a0a0a;
+    --text-2: #525252;
+    --text-3: #8a8a8a;
+    --accent: #5b5bd6;
+    --accent-soft: #eef0ff;
+    --green: #047857;
+    --green-soft: #ecfdf5;
+    --green-bar: #10b981;
+    --red: #b91c1c;
+    --red-soft: #fef2f2;
+    --red-bar: #dc2626;
+    --amber: #b45309;
+    --amber-soft: #fffbeb;
+    --hover: #f5f5f5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+  }
+  .header-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 600; font-size: 15px;
+  }
+  .brand-mark {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: var(--text); color: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .header-meta {
+    font-size: 13px; color: var(--text-2);
+  }
+
+  .hero {
+    max-width: 1280px; margin: 0 auto;
+    padding: 40px 32px 24px;
+  }
+  .hero h1 {
+    font-size: 28px; font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .hero h2 {
+    font-size: 18px; font-weight: 500;
+    color: var(--text-2);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    max-width: 760px;
+  }
+  .hero p {
+    color: var(--text-2);
+    font-size: 15px;
+    max-width: 700px;
+  }
+
+  .container {
+    max-width: 1280px; margin: 0 auto;
+    padding: 8px 32px 80px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .container { grid-template-columns: 1fr; padding: 8px 20px 60px; }
+    .hero { padding: 32px 20px 16px; }
+    header { padding: 14px 20px; }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .card-title {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 16px;
+  }
+  .section-heading {
+    font-size: 13px; font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .input-card {
+    position: sticky; top: 20px;
+  }
+  @media (max-width: 900px) {
+    .input-card { position: static; }
+  }
+
+  .field-group {
+    padding: 6px 0 14px;
+  }
+  .field-group + .field-group {
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+
+  .field {
+    margin-bottom: 14px;
+  }
+  .field:last-child { margin-bottom: 0; }
+
+  .field-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 6px;
+  }
+  .field-label {
+    font-size: 13px; font-weight: 500;
+    color: var(--text);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .info {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--bg); color: var(--text-3);
+    font-size: 9px; font-weight: 700;
+    cursor: help; position: relative;
+    border: 1px solid var(--border-strong);
+  }
+  .info:hover { background: var(--text); color: var(--surface); border-color: var(--text); }
+  .info .tip {
+    visibility: hidden; opacity: 0;
+    position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
+    background: var(--text); color: var(--surface);
+    padding: 8px 10px; border-radius: 6px;
+    font-weight: 400; font-size: 12px; line-height: 1.45;
+    width: 230px; text-align: left;
+    pointer-events: none; transition: opacity 0.15s;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .info:hover .tip { visibility: visible; opacity: 1; }
+
+  /* Inline assumption note */
+  .field-note {
+    font-size: 15px;
+    color: var(--text-2);
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .input-row {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center;
+    padding: 0 10px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input-row:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+    background: var(--surface);
+  }
+  /* Special highlight for the ROI inputs — these are the key levers */
+  .input-row.key-input {
+    background: var(--accent-soft);
+    border-color: rgba(91, 91, 214, 0.35);
+  }
+  .input-row.key-input:focus-within {
+    background: var(--surface);
+  }
+  .input-row .prefix, .input-row .suffix {
+    color: var(--text-3); font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .input-row input {
+    border: none; background: transparent;
+    padding: 8px 6px; flex: 1; text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500; color: var(--text);
+    outline: none;
+    -moz-appearance: textfield;
+  }
+  .input-row input::-webkit-outer-spin-button,
+  .input-row input::-webkit-inner-spin-button {
+    -webkit-appearance: none; margin: 0;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none; margin-top: 8px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 14px; height: 14px;
+    background: var(--surface); cursor: pointer;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px;
+    background: var(--surface); cursor: pointer;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+  }
+
+  .results {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+
+  /* === HEADLINE RESULT: Surplus / Shortfall === */
+  .headline-result {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .headline-result::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--accent);
+    transition: background 0.2s;
+  }
+  .headline-result.is-surplus::before { background: var(--green-bar); }
+  .headline-result.is-shortfall::before { background: var(--red-bar); }
+
+  .headline-result .label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+  .headline-result .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 40px; font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .headline-result .value.pos { color: var(--green); }
+  .headline-result .value.neg { color: var(--red); }
+  .headline-result .caption {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    max-width: 600px;
+  }
+  .headline-result .hint {
+    font-size: 15px;
+    color: var(--text-2);
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .headline-action {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 13px !important;
+    padding: 9px 14px !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .headline-action .pdf-icon {
+    font-size: 12px;
+    margin-right: 2px;
+  }
+  /* On narrow screens, drop the button below the title instead of crowding */
+  @media (max-width: 540px) {
+    .headline-action {
+      position: static;
+      width: 100%;
+      margin-bottom: 12px;
+      justify-content: center;
+    }
+  }
+
+  /* === BAR COMPARISON === */
+  .bar-chart {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .bar-chart h3 {
+    font-size: 14px; font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .bar-chart .sub {
+    font-size: 15px; color: var(--text-2);
+    margin-bottom: 22px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* Vertical bar chart */
+  .vbar-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+    min-height: 280px;
+    padding: 0 20px;
+  }
+  @media (max-width: 600px) {
+    .vbar-wrap { gap: 20px; padding: 0 10px; }
+  }
+  .vbar-col {
+    display: flex; flex-direction: column; align-items: center;
+    height: 100%;
+  }
+  .vbar-value {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 18px; font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .vbar-stack {
+    width: 100%;
+    max-width: 140px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .vbar {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.2s;
+    background: var(--accent);
+    min-height: 4px;
+    position: relative;
+  }
+  .vbar.needed { background: var(--text-2); }
+  .vbar.savings-pos { background: var(--green-bar); }
+  .vbar.savings-neg { background: var(--red-bar); }
+  .vbar-baseline {
+    height: 2px;
+    background: var(--text);
+    width: 100%;
+    margin-top: 0;
+  }
+  .vbar-label {
+    font-size: 13px; font-weight: 500;
+    color: var(--text);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.35;
+    max-width: 180px;
+  }
+  .vbar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-2);
+  }
+  .vbar-legend span {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .vbar-legend .swatch {
+    width: 12px; height: 12px; border-radius: 3px;
+    display: inline-block;
+  }
+
+  /* === SUPPORTING METRICS === */
+  .metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 700px) { .metrics { grid-template-columns: 1fr; } }
+  .metric {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .metric-label {
+    font-size: 12px; color: var(--text-2);
+    margin-bottom: 4px;
+  }
+  .metric-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .metric-value.pos { color: var(--green); }
+  .metric-value.neg { color: var(--red); }
+  .metric-sub {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px; color: var(--text-3);
+    margin-top: 2px;
+  }
+
+  /* === BUTTONS === */
+  .actions {
+    display: flex; gap: 8px; margin-top: 4px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 12px; font-weight: 500;
+    cursor: pointer; color: var(--text);
+    transition: all 0.15s;
+    font-family: inherit;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .btn:hover { background: var(--hover); }
+  .btn-primary {
+    background: var(--accent); color: var(--surface);
+    border-color: var(--accent);
+  }
+  .btn-primary:hover { background: #4a4ac0; }
+  .btn-large {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px; font-weight: 600;
+    border-radius: 8px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .foot {
+    max-width: 1280px; margin: 0 auto;
+    padding: 16px 32px;
+    border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--text-3);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  /* Print-only header (hidden on screen) */
+  .print-header { display: none; }
+
+  /* ============== PDF INSTRUCTIONS MODAL ============== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 24px 26px;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border);
+  }
+  .modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .modal-intro {
+    font-size: 14px;
+    color: var(--text-2);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .modal-steps {
+    list-style: none;
+    margin-bottom: 22px;
+    padding: 0;
+  }
+  .modal-steps li {
+    position: relative;
+    padding: 10px 12px 10px 38px;
+    margin-bottom: 6px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .modal-steps li::before {
+    content: counter(step);
+    counter-increment: step;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    color: var(--surface);
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-steps {
+    counter-reset: step;
+  }
+  .modal-steps strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .modal-note {
+    font-size: 12px;
+    color: var(--text-2);
+    font-style: italic;
+    margin-bottom: 18px;
+    padding: 10px 12px;
+    background: var(--amber-soft);
+    border-left: 3px solid var(--amber);
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  /* ============== PRINT STYLES ============== */
+  @media print {
+    @page {
+      size: letter;
+      margin: 0.5in;
+    }
+
+    /* Force colors to print */
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    body {
+      background: white;
+      font-size: 10pt;
+    }
+
+    /* Hide interactive / non-printable UI */
+    header, .foot, input[type="range"], .info, .actions,
+    .btn, .btn-large, .field-note,
+    .vbar-legend, #calcBtn, .modal-overlay, .headline-action {
+      display: none !important;
+    }
+
+    /* Show the print-only header */
+    .print-header {
+      display: block !important;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .print-title {
+      font-size: 20pt; font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .print-meta {
+      font-size: 9pt; color: #555;
+      margin-top: 2px;
+    }
+
+    /* Hide the on-screen hero — we have the print header instead */
+    .hero { display: none; }
+
+    /* Container: single column, results on top, inputs below */
+    .container {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      max-width: none;
+      gap: 12px;
+    }
+    .results { order: 1; }
+    .input-card { order: 2; }
+
+    /* Reset card styles for clean print */
+    .card, .headline-result, .bar-chart, .metric, .chart-card {
+      box-shadow: none !important;
+      border: 1px solid #ccc !important;
+      page-break-inside: avoid;
+      border-radius: 6px !important;
+    }
+
+    /* Input card — flatten layout, show values as plain text */
+    .input-card {
+      position: static !important;
+      max-height: none !important;
+      overflow: visible !important;
+      padding: 12px 16px;
+    }
+    .card-title {
+      font-size: 8pt;
+      margin-bottom: 8px;
+    }
+    .section-heading {
+      font-size: 10pt;
+      margin-bottom: 6px;
+      padding-bottom: 3px;
+    }
+    .field-group { padding: 4px 0 6px; }
+    .field { margin-bottom: 4px; }
+    .field-head { margin-bottom: 0; }
+    .field-label { font-size: 9pt; }
+
+    /* Input rows become plain inline values */
+    .input-row {
+      border: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      display: inline-flex !important;
+      width: auto;
+    }
+    .input-row input {
+      border: none !important;
+      background: transparent !important;
+      padding: 0 4px !important;
+      font-weight: 700;
+      font-size: 9pt;
+      width: 90px;
+    }
+    .input-row .prefix, .input-row .suffix {
+      font-size: 9pt;
+    }
+
+    /* Headline result — keep prominent */
+    .headline-result { padding: 12px 16px; }
+    .headline-result .label { font-size: 8pt; }
+    .headline-result .value { font-size: 22pt; margin-bottom: 4px; }
+    .headline-result .caption { font-size: 9pt; }
+    .headline-result .hint { font-size: 9pt; margin-top: 4px; }
+
+    /* Bar chart */
+    .bar-chart { padding: 12px 16px; }
+    .bar-chart h3 { font-size: 11pt; }
+    .bar-chart .sub { font-size: 9pt; margin-bottom: 10px; }
+    .vbar-wrap {
+      min-height: 160px;
+      padding: 0 10px;
+    }
+    .vbar-value { font-size: 11pt; }
+    .vbar-label { font-size: 9pt; margin-top: 8px; }
+
+    /* Metrics row */
+    .metrics { gap: 6px; }
+    .metric { padding: 8px 10px; }
+    .metric-label { font-size: 8pt; }
+    .metric-value { font-size: 13pt; }
+    .metric-sub { font-size: 8pt; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-header" id="printHeader">
+  <div class="print-title">Retirement Calculator</div>
+  <div class="print-meta" id="printDate"></div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">R</div>
+      <span>Retirement Calculator</span>
+    </div>
+    <span class="header-meta">Educational tool · Not financial advice</span>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Retirement Calculator</h1>
+  <h2>Calculate How Much You Need To Save, How Long Your Money Will Last, And How Soon You Can Retire</h2>
+  <p>This retirement calculator assists in completing the standard calculations to forecast your savings needs, estimate your retirement income, and adjust for inflation. Enter your assumptions below. Change any value to see how it affects your whole plan!</p>
+</section>
+
+<main class="container">
+
+  <aside class="card input-card">
+    <div class="card-title">Your Inputs</div>
+
+    <div class="field-group">
+      <div class="section-heading">Personal Information</div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="currentAge">Enter age at end of current year <span class="info">i<span class="tip">Your age today. The younger you are, the more time compounding has to work for you.</span></span></label>
+        </div>
+        <div class="input-row"><input type="number" id="currentAge" value="22" min="15" max="75"><span class="suffix">Yrs</span></div>
+        <input type="range" id="currentAgeSlider" min="15" max="75" value="22">
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="retireAge">Enter age you plan to retire <span class="info">i<span class="tip">The age at which you'll stop working and start drawing down savings. Each extra year of work shortens your withdrawal horizon.</span></span></label>
+        </div>
+        <div class="input-row"><input type="number" id="retireAge" value="65" min="40" max="85"><span class="suffix">Yrs</span></div>
+        <input type="range" id="retireAgeSlider" min="40" max="85" value="65">
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="lifeExp">Enter life expectancy <span class="info">i<span class="tip">Nobody can know when they're going to die — but for planning purposes, conservative estimates run to age 90–95.</span></span></label>
+        </div>
+        <div class="input-row"><input type="number" id="lifeExp" value="92" min="60" max="110"><span class="suffix">Yrs</span></div>
+        <input type="range" id="lifeExpSlider" min="60" max="110" value="92">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="section-heading">Conventional Retirement Planning</div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="currentSavings">Current total savings / portfolio value <span class="info">i<span class="tip">The total amount you have already invested for retirement today. Exclude your emergency fund.</span></span></label>
+        </div>
+        <div class="input-row"><span class="prefix">$</span><input type="number" id="currentSavings" value="2000" min="0" step="500"></div>
+        <input type="range" id="currentSavingsSlider" min="0" max="500000" value="2000" step="500">
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="monthlySave">Monthly savings contributions <span class="info">i<span class="tip">The amount you save each month. A common rule of thumb is 15% of gross income.</span></span></label>
+        </div>
+        <div class="input-row"><span class="prefix">$</span><input type="number" id="monthlySave" value="500" min="0" step="50"></div>
+        <input type="range" id="monthlySaveSlider" min="0" max="3000" value="500" step="50">
+        <div class="field-note">Assumes contributions continue until retirement and are discontinued thereafter.</div>
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="annualNeed">Desired annual retirement income <span class="info">i<span class="tip">The amount you wish to have as household income each year during retirement, stated in today's dollars. Inflation is applied automatically.</span></span></label>
+        </div>
+        <div class="input-row"><span class="prefix">$</span><input type="number" id="annualNeed" value="48000" min="6000" step="1000"></div>
+        <input type="range" id="annualNeedSlider" min="6000" max="200000" value="48000" step="1000">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <div class="section-heading">Investment Return &amp; Inflation</div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="returnRate">Pre-retirement ROI <span class="info">i<span class="tip">This is the key lever. Tune it up or down until your Surplus / Shortfall lands near zero — that's the average annual return your plan requires to succeed.</span></span></label>
+        </div>
+        <div class="input-row key-input"><input type="number" id="returnRate" value="7" min="0" max="15" step="0.1"><span class="suffix">%</span></div>
+        <input type="range" id="returnRateSlider" min="0" max="15" value="7" step="0.1">
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="retReturn">In-retirement ROI <span class="info">i<span class="tip">Most investors shift to safer assets during retirement, lowering the expected return on their portfolio.</span></span></label>
+        </div>
+        <div class="input-row key-input"><input type="number" id="retReturn" value="5" min="0" max="12" step="0.1"><span class="suffix">%</span></div>
+        <input type="range" id="retReturnSlider" min="0" max="12" value="5" step="0.1">
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="inflation">Estimated average annual inflation rate <span class="info">i<span class="tip">The historical average for U.S. inflation has approximated 3%. This erodes the buying power of every dollar you save.</span></span></label>
+        </div>
+        <div class="input-row"><input type="number" id="inflation" value="3" min="0" max="10" step="0.1"><span class="suffix">%</span></div>
+        <input type="range" id="inflationSlider" min="0" max="10" value="3" step="0.1">
+      </div>
+
+      <div class="field">
+        <div class="field-head">
+          <label class="field-label" for="taxRate">Estimated tax rate during retirement <span class="info">i<span class="tip">Withdrawals from tax-deferred accounts are taxable income. This grosses up the amount you must withdraw to actually receive your desired retirement income.</span></span></label>
+        </div>
+        <div class="input-row"><input type="number" id="taxRate" value="15" min="0" max="50" step="0.5"><span class="suffix">%</span></div>
+        <input type="range" id="taxRateSlider" min="0" max="50" value="15" step="0.5">
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-large" id="calcBtn">Calculate</button>
+
+    <div class="actions">
+      <button class="btn" id="resetBtn">Reset</button>
+      <button class="btn" id="copyBtn">Copy summary</button>
+      <button class="btn" id="pdfBtn">Save as PDF</button>
+    </div>
+  </aside>
+
+  <section class="results">
+
+    <!-- HEADLINE RESULT: Savings Surplus / Shortfall -->
+    <div class="headline-result" id="headlineCard">
+      <button class="btn btn-primary headline-action" id="pdfBtnTop">
+        <span class="pdf-icon" aria-hidden="true">⬇</span> Save as PDF
+      </button>
+      <div class="label">Savings Surplus / Shortfall</div>
+      <div class="value" id="gapValue">—</div>
+      <div class="caption" id="gapCaption">Adjust your inputs and click Calculate to see your result.</div>
+      <div class="hint">A negative number indicates a shortfall.</div>
+    </div>
+
+    <!-- VERTICAL BAR COMPARISON -->
+    <div class="bar-chart">
+      <h3>Retirement Savings Score</h3>
+      <div class="sub">A side-by-side comparison of what your plan produces against what your plan requires.</div>
+
+      <div class="vbar-wrap">
+        <div class="vbar-col">
+          <div class="vbar-value" id="nestEggValue">—</div>
+          <div class="vbar-stack">
+            <div class="vbar" id="savingsBar" style="height: 0%"></div>
+          </div>
+          <div class="vbar-baseline"></div>
+          <div class="vbar-label">Projected Savings</div>
+        </div>
+
+        <div class="vbar-col">
+          <div class="vbar-value" id="targetValue">—</div>
+          <div class="vbar-stack">
+            <div class="vbar needed" id="neededBar" style="height: 0%"></div>
+          </div>
+          <div class="vbar-baseline"></div>
+          <div class="vbar-label">Required Savings</div>
+        </div>
+      </div>
+
+      <div class="vbar-legend">
+        <span><span class="swatch" id="legendSavings" style="background: var(--accent)"></span>Your projected savings</span>
+        <span><span class="swatch" style="background: var(--text-2)"></span>Required savings</span>
+      </div>
+    </div>
+
+    <!-- SUPPORTING METRICS -->
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Additional Monthly Contribution Needed</div>
+        <div class="metric-value" id="extraNeeded">—</div>
+        <div class="metric-sub">to fully fund plan</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Required ROI to Fully Fund Plan</div>
+        <div class="metric-value" id="requiredROI">—</div>
+        <div class="metric-sub" id="requiredROISub">average annual return needed</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Money Lasts Until Age</div>
+        <div class="metric-value" id="lastsUntil">—</div>
+        <div class="metric-sub" id="lastsUntilSub">withdrawal horizon</div>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<div class="foot">
+  <span>Educational model. All retirement calculations are mathematical projections of input assumptions — your estimate is only as accurate as the assumptions you make.</span>
+  <span>v1.1</span>
+</div>
+
+<!-- PDF instructions modal -->
+<div class="modal-overlay" id="pdfModal" role="dialog" aria-labelledby="pdfModalTitle">
+  <div class="modal">
+    <div class="modal-title" id="pdfModalTitle">Saving your results as a PDF</div>
+    <div class="modal-intro">Your browser's print dialog will open next. Follow these three steps to save a clean copy of your work:</div>
+    <ol class="modal-steps">
+      <li>Set <strong>Destination</strong> to <strong>"Save as PDF"</strong> (instead of a printer).</li>
+      <li>Open <strong>"More settings"</strong> and check the box for <strong>"Background graphics"</strong>. This keeps the colored bars and numbers in your saved PDF.</li>
+      <li>Click <strong>Save</strong> and choose where to save the file on your computer.</li>
+    </ol>
+    <div class="modal-note">If you skip step 2, the bars in your PDF will appear blank or white. The chart needs background graphics turned on to show colors.</div>
+    <div class="modal-actions">
+      <button class="btn" id="pdfCancel">Cancel</button>
+      <button class="btn btn-primary" id="pdfContinue">Open print dialog</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEFAULTS = {
+  currentAge: 22, retireAge: 65, lifeExp: 92,
+  currentSavings: 2000, monthlySave: 500, annualNeed: 48000,
+  returnRate: 7, retReturn: 5, inflation: 3, taxRate: 15
+};
+const inputs = { ...DEFAULTS };
+
+// ============== MATH ==============
+function project(overrides) {
+  const inp = overrides ? { ...inputs, ...overrides } : inputs;
+  const yearsToRetire = Math.max(0, inp.retireAge - inp.currentAge);
+  const yearsInRetire = Math.max(0, inp.lifeExp - inp.retireAge);
+  const r = inp.returnRate / 100;
+  const rRet = inp.retReturn / 100;
+  const infl = inp.inflation / 100;
+  const tax = inp.taxRate / 100;
+
+  // Accumulation phase: monthly compounding with contributions
+  let balance = inp.currentSavings;
+  const monthlyR = Math.pow(1 + r, 1/12) - 1;
+
+  for (let y = 1; y <= yearsToRetire; y++) {
+    for (let m = 0; m < 12; m++) {
+      balance = balance * (1 + monthlyR) + inp.monthlySave;
+    }
+  }
+
+  const nestEgg = balance;
+
+  // Required nest egg uses pre-tax need (gross-up by 1/(1-tax))
+  const inflFactor = Math.pow(1 + infl, yearsToRetire);
+  const realRet = (1 + rRet) / (1 + infl) - 1;
+  const preTaxFactor = tax >= 1 ? 1 : 1 / (1 - tax);
+  const annualGrossNeedToday = inp.annualNeed * preTaxFactor;
+
+  let requiredToday;
+  if (Math.abs(realRet) < 1e-6) {
+    requiredToday = annualGrossNeedToday * yearsInRetire;
+  } else {
+    requiredToday = annualGrossNeedToday * (1 - Math.pow(1 + realRet, -yearsInRetire)) / realRet;
+  }
+  requiredToday = Math.max(0, requiredToday);
+  const requiredAtRetire = requiredToday * inflFactor;
+
+  // Withdrawal simulation to find when money runs out
+  let withdrawBalance = nestEgg;
+  const monthlyRetR = Math.pow(1 + rRet, 1/12) - 1;
+  let currentMonthlyGrossNeed = inp.annualNeed * preTaxFactor * inflFactor / 12;
+  let lastsUntilAge = inp.retireAge;
+  let exhausted = false;
+
+  for (let y = 1; y <= yearsInRetire; y++) {
+    if (exhausted) break;
+    for (let m = 0; m < 12; m++) {
+      withdrawBalance = withdrawBalance * (1 + monthlyRetR) - currentMonthlyGrossNeed;
+      if (withdrawBalance < 0) { exhausted = true; break; }
+    }
+    if (!exhausted) lastsUntilAge = inp.retireAge + y;
+    currentMonthlyGrossNeed *= (1 + infl);
+  }
+
+  const gap = nestEgg - requiredAtRetire;
+
+  // Additional monthly contribution required to close the gap
+  let extraMonthly = 0;
+  if (gap < 0 && yearsToRetire > 0) {
+    const n = yearsToRetire * 12;
+    const i = monthlyR;
+    if (Math.abs(i) < 1e-9) {
+      extraMonthly = -gap / n;
+    } else {
+      extraMonthly = (-gap) * i / (Math.pow(1+i, n) - 1);
+    }
+  }
+
+  return { nestEgg, lastsUntilAge, exhausted, yearsToRetire, yearsInRetire, requiredAtRetire, gap, extraMonthly };
+}
+
+// Solve for the pre-retirement ROI that drives gap to zero (binary search)
+function solveRequiredROI() {
+  if (inputs.retireAge <= inputs.currentAge) return null;
+  let lo = -0.05, hi = 0.30;
+  // Ensure bracket
+  const gapAt = (rate) => project({ returnRate: rate * 100 }).gap;
+  if (gapAt(hi) < 0) return { rate: hi, capped: true };  // even 30% isn't enough
+  if (gapAt(lo) > 0) return { rate: lo, capped: true };  // even -5% works (impossible case)
+  for (let k = 0; k < 60; k++) {
+    const mid = (lo + hi) / 2;
+    if (gapAt(mid) > 0) hi = mid; else lo = mid;
+  }
+  return { rate: (lo + hi) / 2, capped: false };
+}
+
+// ============== FORMAT ==============
+function fmtMoney(n) {
+  if (!isFinite(n)) return "—";
+  const abs = Math.abs(n);
+  let s;
+  if (abs >= 1e9) s = (n/1e9).toFixed(2) + "B";
+  else if (abs >= 1e6) s = (n/1e6).toFixed(2) + "M";
+  else if (abs >= 1e3) s = (n/1e3).toFixed(0) + "K";
+  else s = Math.round(n).toString();
+  return (n < 0 ? "−$" : "$") + s.replace("-", "");
+}
+function fmtFull(n) {
+  if (!isFinite(n)) return "—";
+  return (n < 0 ? "−$" : "$") + Math.round(Math.abs(n)).toLocaleString();
+}
+
+// ============== RENDER ==============
+function render() {
+  const p = project();
+
+  // Headline: Surplus / Shortfall
+  const headlineCard = document.getElementById('headlineCard');
+  const gapValue = document.getElementById('gapValue');
+  const gapCaption = document.getElementById('gapCaption');
+
+  gapValue.textContent = fmtFull(p.gap);
+  headlineCard.classList.remove('is-surplus', 'is-shortfall');
+  if (p.gap >= 0) {
+    gapValue.classList.add('pos');
+    gapValue.classList.remove('neg');
+    headlineCard.classList.add('is-surplus');
+    if (p.gap < p.requiredAtRetire * 0.05) {
+      gapCaption.textContent = "Your savings are projected to fund the plan with a thin margin. Real markets are more volatile than this projection.";
+    } else {
+      gapCaption.textContent = "Your savings are projected to exceed what the plan requires. You have a cushion against the unknowable future.";
+    }
+  } else {
+    gapValue.classList.add('neg');
+    gapValue.classList.remove('pos');
+    headlineCard.classList.add('is-shortfall');
+    const pct = p.requiredAtRetire > 0 ? Math.round(100 * p.nestEgg / p.requiredAtRetire) : 0;
+    gapCaption.textContent = `Your savings cover about ${pct}% of what's needed. To close the gap, increase contributions, retire later, lower your desired income, or aim for a higher return.`;
+  }
+
+  // Vertical bar comparison
+  const maxVal = Math.max(p.nestEgg, p.requiredAtRetire, 1);
+  const savingsPct = Math.min(100, (p.nestEgg / maxVal) * 100);
+  const neededPct = Math.min(100, (p.requiredAtRetire / maxVal) * 100);
+  const savingsBar = document.getElementById('savingsBar');
+  savingsBar.style.height = savingsPct + '%';
+  document.getElementById('neededBar').style.height = neededPct + '%';
+  document.getElementById('nestEggValue').textContent = fmtFull(p.nestEgg);
+  document.getElementById('targetValue').textContent = fmtFull(p.requiredAtRetire);
+
+  // Color the savings bar based on surplus/shortfall
+  savingsBar.classList.remove('savings-pos', 'savings-neg');
+  savingsBar.classList.add(p.gap >= 0 ? 'savings-pos' : 'savings-neg');
+
+  // Match value-label color to its bar
+  const nestEggValueEl = document.getElementById('nestEggValue');
+  nestEggValueEl.style.color = p.gap >= 0 ? 'var(--green)' : 'var(--red)';
+
+  // Update legend swatch to match current bar color
+  const legendSwatch = document.getElementById('legendSavings');
+  if (legendSwatch) {
+    legendSwatch.style.background = p.gap >= 0 ? 'var(--green-bar)' : 'var(--red-bar)';
+  }
+
+  // Supporting metrics
+  const extraEl = document.getElementById('extraNeeded');
+  if (p.extraMonthly > 0) {
+    extraEl.textContent = fmtFull(p.extraMonthly) + "/mo";
+    extraEl.className = "metric-value neg";
+  } else {
+    extraEl.textContent = "$0/mo";
+    extraEl.className = "metric-value pos";
+  }
+
+  const roiSol = solveRequiredROI();
+  const roiEl = document.getElementById('requiredROI');
+  const roiSub = document.getElementById('requiredROISub');
+  if (roiSol === null) {
+    roiEl.textContent = "—";
+    roiSub.textContent = "already at retirement";
+  } else if (roiSol.capped) {
+    roiEl.textContent = roiSol.rate >= 0.30 ? ">30%" : "<0%";
+    roiSub.textContent = "outside reasonable range";
+  } else {
+    const pct = (roiSol.rate * 100);
+    roiEl.textContent = pct.toFixed(2) + "%";
+    const delta = pct - inputs.returnRate;
+    roiSub.textContent = "average annual return needed";
+    if (Math.abs(delta) < 0.05 || delta < 0) {
+      roiEl.className = "metric-value pos";
+    } else {
+      roiEl.className = "metric-value neg";
+    }
+  }
+
+  const lu = document.getElementById('lastsUntil');
+  if (p.exhausted) {
+    lu.textContent = p.lastsUntilAge;
+    lu.className = "metric-value neg";
+    document.getElementById('lastsUntilSub').textContent = `${inputs.lifeExp - p.lastsUntilAge} years short of life expectancy`;
+  } else {
+    lu.textContent = `${inputs.lifeExp}+`;
+    lu.className = "metric-value pos";
+    document.getElementById('lastsUntilSub').textContent = "money lasts to planned life expectancy";
+  }
+}
+
+// ============== BINDINGS ==============
+function bindPair(id) {
+  const num = document.getElementById(id);
+  const slider = document.getElementById(id + "Slider");
+  const apply = (v) => {
+    const val = parseFloat(v);
+    if (!isFinite(val)) return;
+    inputs[id] = val;
+    if (num.value != val) num.value = val;
+    if (slider && slider.value != val) slider.value = val;
+    render();
+  };
+  num.addEventListener('input', e => apply(e.target.value));
+  if (slider) slider.addEventListener('input', e => apply(e.target.value));
+}
+Object.keys(DEFAULTS).forEach(bindPair);
+
+// Calculate button — re-renders, gives subtle visual confirmation
+document.getElementById('calcBtn').addEventListener('click', () => {
+  render();
+  const card = document.getElementById('headlineCard');
+  card.style.transition = 'transform 0.2s ease';
+  card.style.transform = 'scale(1.01)';
+  setTimeout(() => { card.style.transform = ''; }, 200);
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  Object.assign(inputs, DEFAULTS);
+  for (const k in DEFAULTS) {
+    const el = document.getElementById(k);
+    if (el) el.value = DEFAULTS[k];
+    const sl = document.getElementById(k + "Slider");
+    if (sl) sl.value = DEFAULTS[k];
+  }
+  render();
+});
+
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const p = project();
+  const roiSol = solveRequiredROI();
+  const roiText = roiSol && !roiSol.capped ? (roiSol.rate * 100).toFixed(2) + "%" : "outside range";
+  const text = `Retirement Calculator — Summary
+
+Personal Information
+  Current age: ${inputs.currentAge}
+  Retirement age: ${inputs.retireAge}
+  Life expectancy: ${inputs.lifeExp}
+
+Conventional Retirement Planning
+  Current total savings: ${fmtFull(inputs.currentSavings)}
+  Monthly savings contribution: ${fmtFull(inputs.monthlySave)}
+  Desired annual retirement income: ${fmtFull(inputs.annualNeed)}
+
+Assumptions
+  Pre-retirement ROI: ${inputs.returnRate}%
+  In-retirement ROI: ${inputs.retReturn}%
+  Inflation rate: ${inputs.inflation}%
+  Tax rate during retirement: ${inputs.taxRate}%
+
+Results
+  Projected Savings:                 ${fmtFull(p.nestEgg)}
+  Required Savings:                  ${fmtFull(p.requiredAtRetire)}
+  Savings Surplus / Shortfall:                     ${fmtFull(p.gap)}
+  Additional Monthly Contribution Needed:          ${fmtFull(p.extraMonthly)}/mo
+  Required ROI to Fully Fund Plan:                 ${roiText}
+  Money lasts until:                               age ${p.exhausted ? p.lastsUntilAge : inputs.lifeExp + '+'}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    const btn = document.getElementById('copyBtn');
+    const orig = btn.textContent;
+    btn.textContent = "Copied ✓";
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  } catch(e) {}
+});
+
+// Save as PDF — first show instructions modal, then trigger browser print-to-PDF
+function openPdfModal() {
+  document.getElementById('pdfModal').classList.add('open');
+}
+document.getElementById('pdfBtn').addEventListener('click', openPdfModal);
+document.getElementById('pdfBtnTop').addEventListener('click', openPdfModal);
+
+document.getElementById('pdfCancel').addEventListener('click', () => {
+  document.getElementById('pdfModal').classList.remove('open');
+});
+
+document.getElementById('pdfContinue').addEventListener('click', () => {
+  // Close modal first so it isn't captured in the print preview
+  document.getElementById('pdfModal').classList.remove('open');
+  // Stamp the print header with today's date
+  const now = new Date();
+  document.getElementById('printDate').textContent =
+    "Generated " + now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  // Tiny delay so the DOM reflects the modal closing before print opens
+  setTimeout(() => window.print(), 80);
+});
+
+// Click outside the modal to close
+document.getElementById('pdfModal').addEventListener('click', (e) => {
+  if (e.target.id === 'pdfModal') {
+    document.getElementById('pdfModal').classList.remove('open');
+  }
+});
+
+// Force-reset all inputs to defaults on every page load — prevents browser
+// from restoring cached values from a previous session.
+document.querySelectorAll('input').forEach(el => el.setAttribute('autocomplete', 'off'));
+Object.assign(inputs, DEFAULTS);
+for (const k in DEFAULTS) {
+  const el = document.getElementById(k);
+  if (el) el.value = DEFAULTS[k];
+  const sl = document.getElementById(k + "Slider");
+  if (sl) sl.value = DEFAULTS[k];
+}
+
+render();
+</script>
+</body>
+</html>

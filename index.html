@@ -1,3 +1,6 @@
+
+raw
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +42,7 @@
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
   }
-
+ 
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -62,7 +65,7 @@
   .header-meta {
     font-size: 13px; color: var(--text-2);
   }
-
+ 
   .hero {
     max-width: 1280px; margin: 0 auto;
     padding: 40px 32px 24px;
@@ -77,14 +80,14 @@
     color: var(--text-2);
     margin-bottom: 12px;
     line-height: 1.4;
-    max-width: 760px;
+    max-width: 920px;
   }
   .hero p {
     color: var(--text-2);
     font-size: 15px;
     max-width: 700px;
   }
-
+ 
   .container {
     max-width: 1280px; margin: 0 auto;
     padding: 8px 32px 80px;
@@ -97,7 +100,7 @@
     .hero { padding: 32px 20px 16px; }
     header { padding: 14px 20px; }
   }
-
+ 
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -117,14 +120,14 @@
     padding-bottom: 6px;
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .input-card {
     position: sticky; top: 20px;
   }
   @media (max-width: 900px) {
     .input-card { position: static; }
   }
-
+ 
   .field-group {
     padding: 6px 0 14px;
   }
@@ -132,12 +135,12 @@
     padding-top: 14px;
     border-top: 1px solid var(--border);
   }
-
+ 
   .field {
     margin-bottom: 14px;
   }
   .field:last-child { margin-bottom: 0; }
-
+ 
   .field-head {
     display: flex; justify-content: space-between; align-items: center;
     margin-bottom: 6px;
@@ -168,7 +171,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
   .info:hover .tip { visibility: visible; opacity: 1; }
-
+ 
   /* Inline assumption note */
   .field-note {
     font-size: 15px;
@@ -177,7 +180,116 @@
     font-style: italic;
     line-height: 1.5;
   }
-
+ 
+  /* === CONTRIBUTION STREAMS === */
+  .contributions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .stream-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .stream-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .stream-field label {
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .stream-input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .stream-input:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-soft);
+  }
+  .stream-input .prefix, .stream-input .suffix {
+    color: var(--text-3);
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stream-input input {
+    border: none;
+    background: transparent;
+    padding: 6px 4px;
+    width: 100%;
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    outline: none;
+    color: var(--text);
+    -moz-appearance: textfield;
+  }
+  .stream-input input::-webkit-outer-spin-button,
+  .stream-input input::-webkit-inner-spin-button {
+    -webkit-appearance: none; margin: 0;
+  }
+  .stream-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .stream-num {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .stream-remove {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .stream-remove:hover {
+    background: var(--red-soft);
+    color: var(--red);
+    border-color: var(--red);
+  }
+  .stream-add {
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    color: var(--text-2);
+    padding: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 4px;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .stream-add:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+ 
   .input-row {
     background: var(--bg);
     border: 1px solid var(--border);
@@ -215,7 +327,7 @@
   .input-row input::-webkit-inner-spin-button {
     -webkit-appearance: none; margin: 0;
   }
-
+ 
   input[type="range"] {
     -webkit-appearance: none; appearance: none;
     width: 100%; height: 4px;
@@ -237,11 +349,11 @@
     border: 2px solid var(--accent);
     border-radius: 50%;
   }
-
+ 
   .results {
     display: flex; flex-direction: column; gap: 16px;
   }
-
+ 
   /* === HEADLINE RESULT: Surplus / Shortfall === */
   .headline-result {
     background: var(--surface);
@@ -261,7 +373,7 @@
   }
   .headline-result.is-surplus::before { background: var(--green-bar); }
   .headline-result.is-shortfall::before { background: var(--red-bar); }
-
+ 
   .headline-result .label {
     font-size: 11px; font-weight: 600;
     letter-spacing: 0.06em; text-transform: uppercase;
@@ -311,7 +423,7 @@
       justify-content: center;
     }
   }
-
+ 
   /* === BAR COMPARISON === */
   .bar-chart {
     background: var(--surface);
@@ -329,18 +441,18 @@
     line-height: 1.5;
     font-style: italic;
   }
-
+ 
   /* Vertical bar chart */
   .vbar-wrap {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: 24px;
     align-items: end;
-    min-height: 280px;
-    padding: 0 20px;
+    min-height: 220px;
+    padding: 0 60px;
   }
   @media (max-width: 600px) {
-    .vbar-wrap { gap: 20px; padding: 0 10px; }
+    .vbar-wrap { gap: 16px; padding: 0 10px; min-height: 180px; }
   }
   .vbar-col {
     display: flex; flex-direction: column; align-items: center;
@@ -355,7 +467,7 @@
   }
   .vbar-stack {
     width: 100%;
-    max-width: 140px;
+    max-width: 220px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -405,7 +517,7 @@
     width: 12px; height: 12px; border-radius: 3px;
     display: inline-block;
   }
-
+ 
   /* === SUPPORTING METRICS === */
   .metrics {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -434,7 +546,7 @@
     font-size: 11px; color: var(--text-3);
     margin-top: 2px;
   }
-
+ 
   /* === BUTTONS === */
   .actions {
     display: flex; gap: 8px; margin-top: 4px;
@@ -465,7 +577,7 @@
     justify-content: center;
     margin-top: 16px;
   }
-
+ 
   .foot {
     max-width: 1280px; margin: 0 auto;
     padding: 16px 32px;
@@ -473,10 +585,513 @@
     font-size: 12px; color: var(--text-3);
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
   }
-
+ 
+  /* === TABS === */
+  .tab-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    border-bottom: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-2);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+  .tab-content { display: none; flex-direction: column; gap: 16px; }
+  .tab-content.active { display: flex; }
+ 
+  /* === INSIGHT CARDS === */
+  .insight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .insight-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .insight-sub {
+    font-size: 15px;
+    color: var(--text-2);
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .insight-takeaway {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .insight-takeaway strong { font-weight: 600; }
+ 
+  /* Donut chart for nest egg breakdown */
+  .donut-wrap {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+  @media (max-width: 600px) {
+    .donut-wrap { grid-template-columns: 1fr; gap: 16px; }
+  }
+  .donut-svg {
+    width: 220px;
+    height: 220px;
+    display: block;
+  }
+  @media (max-width: 600px) {
+    .donut-svg { margin: 0 auto; }
+  }
+  .donut-center {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    fill: var(--text);
+  }
+  .donut-center-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    fill: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .donut-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .donut-legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .donut-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .donut-legend-text {
+    flex: 1;
+    line-height: 1.5;
+  }
+  .donut-legend-label {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 2px;
+  }
+  .donut-legend-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .donut-legend-pct {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-left: 4px;
+  }
+ 
+  /* Cost of waiting bars */
+  .cow-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 100px;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 600px) {
+    .cow-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+  .cow-row:last-child { margin-bottom: 0; }
+  .cow-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .cow-sub-label {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 2px;
+  }
+  .cow-bar-track {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    height: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cow-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 5px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .cow-row.best .cow-bar-fill { background: var(--green-bar); }
+  .cow-row.late .cow-bar-fill { background: var(--amber); opacity: 0.85; }
+  .cow-row.latest .cow-bar-fill { background: var(--red-bar); opacity: 0.85; }
+  .cow-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+    color: var(--text);
+  }
+ 
+  /* === GOAL SEEK === */
+  .goal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+  @media (max-width: 600px) {
+    .goal-card { grid-template-columns: 1fr; }
+  }
+  .goal-question {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .goal-context {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.45;
+  }
+  .goal-answer {
+    text-align: right;
+  }
+  @media (max-width: 600px) { .goal-answer { text-align: left; } }
+  .goal-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .goal-value.unreachable { color: var(--red); font-size: 16px; }
+  .goal-comparison {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .goal-intro {
+    font-size: 15px;
+    color: var(--text-2);
+    margin-bottom: 4px;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 0 4px;
+  }
+ 
+  /* === COMPARE === */
+  .compare-toolbar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+  .compare-toolbar h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .compare-toolbar p {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .compare-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 700px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+  .scenario-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+  }
+  .scenario-card.scenario-a { border-top: 3px solid var(--accent); }
+  .scenario-card.scenario-b { border-top: 3px solid var(--green-bar); }
+  .scenario-card.empty {
+    background: var(--bg);
+    border-style: dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    color: var(--text-3);
+    text-align: center;
+    font-size: 13px;
+    padding: 30px 20px;
+  }
+  .scenario-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .scenario-tag.a { background: var(--accent-soft); color: var(--accent); }
+  .scenario-tag.b { background: var(--green-soft); color: var(--green); }
+  .scenario-clear {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-3);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .scenario-clear:hover { background: var(--bg); color: var(--text); }
+  .scenario-gap {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 4px 0 12px;
+  }
+  .scenario-gap.pos { color: var(--green); }
+  .scenario-gap.neg { color: var(--red); }
+  .scenario-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+  }
+  .scenario-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .scenario-list li:last-child { border-bottom: none; }
+  .scenario-list .lbl { color: var(--text-2); }
+  .scenario-list .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .scenario-list .val.better { color: var(--green); }
+  .scenario-list .val.worse { color: var(--red); }
+  .scenario-section-head {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 14px 0 6px;
+  }
+  .scenario-section-head:first-child { margin-top: 0; }
+ 
+  /* === SENSITIVITY === */
+  .sens-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 110px;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  @media (max-width: 600px) {
+    .sens-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+  .sens-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .sens-sub-label {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 2px;
+  }
+  .sens-bar-track {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sens-bar-fill {
+    height: 100%;
+    background: var(--green-bar);
+    border-radius: 5px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .sens-bar-fill.negative { background: var(--red-bar); }
+  .sens-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: right;
+    color: var(--text);
+  }
+  .sens-value.positive { color: var(--green); }
+  .sens-value.negative { color: var(--red); }
+ 
+  /* === YEAR-BY-YEAR TABLE === */
+  .year-table-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px 60px;
+  }
+  @media (max-width: 900px) {
+    .year-table-section { padding: 0 20px 40px; }
+  }
+  .year-table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .year-table-title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .year-table-sub {
+    font-size: 15px;
+    color: var(--text-2);
+    margin-bottom: 18px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .year-table-wrap {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 480px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .year-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    min-width: 720px;
+  }
+  .year-table thead {
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .year-table th {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-3);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-strong);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .year-table th:first-child,
+  .year-table th:nth-child(2) {
+    text-align: left;
+  }
+  .year-table td {
+    padding: 6px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    text-align: right;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .year-table td:first-child,
+  .year-table td:nth-child(2) {
+    text-align: left;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    color: var(--text-2);
+  }
+  .year-table td .muted {
+    color: var(--text-3);
+  }
+  .year-table tr.retirement-start td {
+    border-top: 2px solid var(--accent);
+    padding-top: 10px;
+  }
+  .year-table tr.exhausted td {
+    color: var(--text-3);
+  }
+  .year-table tbody tr:hover td {
+    background: var(--bg);
+  }
+  .year-table-legend {
+    display: flex; gap: 16px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-2);
+    flex-wrap: wrap;
+  }
+  .year-table-legend .marker {
+    display: inline-block;
+    width: 16px; height: 2px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+ 
   /* Print-only header (hidden on screen) */
   .print-header { display: none; }
-
+ 
   /* ============== PDF INSTRUCTIONS MODAL ============== */
   .modal-overlay {
     display: none;
@@ -566,33 +1181,33 @@
     justify-content: flex-end;
     gap: 8px;
   }
-
+ 
   /* ============== PRINT STYLES ============== */
   @media print {
     @page {
       size: letter;
       margin: 0.5in;
     }
-
+ 
     /* Force colors to print */
     *, *::before, *::after {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
       color-adjust: exact !important;
     }
-
+ 
     body {
       background: white;
       font-size: 10pt;
     }
-
+ 
     /* Hide interactive / non-printable UI */
     header, .foot, input[type="range"], .info, .actions,
     .btn, .btn-large, .field-note,
     .vbar-legend, #calcBtn, .modal-overlay, .headline-action {
       display: none !important;
     }
-
+ 
     /* Show the print-only header */
     .print-header {
       display: block !important;
@@ -608,10 +1223,10 @@
       font-size: 9pt; color: #555;
       margin-top: 2px;
     }
-
+ 
     /* Hide the on-screen hero — we have the print header instead */
     .hero { display: none; }
-
+ 
     /* Container: single column, results on top, inputs below */
     .container {
       display: flex;
@@ -622,7 +1237,7 @@
     }
     .results { order: 1; }
     .input-card { order: 2; }
-
+ 
     /* Reset card styles for clean print */
     .card, .headline-result, .bar-chart, .metric, .chart-card {
       box-shadow: none !important;
@@ -630,7 +1245,7 @@
       page-break-inside: avoid;
       border-radius: 6px !important;
     }
-
+ 
     /* Input card — flatten layout, show values as plain text */
     .input-card {
       position: static !important;
@@ -651,7 +1266,7 @@
     .field { margin-bottom: 4px; }
     .field-head { margin-bottom: 0; }
     .field-label { font-size: 9pt; }
-
+ 
     /* Input rows become plain inline values */
     .input-row {
       border: none !important;
@@ -672,14 +1287,14 @@
     .input-row .prefix, .input-row .suffix {
       font-size: 9pt;
     }
-
+ 
     /* Headline result — keep prominent */
     .headline-result { padding: 12px 16px; }
     .headline-result .label { font-size: 8pt; }
     .headline-result .value { font-size: 22pt; margin-bottom: 4px; }
     .headline-result .caption { font-size: 9pt; }
     .headline-result .hint { font-size: 9pt; margin-top: 4px; }
-
+ 
     /* Bar chart */
     .bar-chart { padding: 12px 16px; }
     .bar-chart h3 { font-size: 11pt; }
@@ -690,23 +1305,50 @@
     }
     .vbar-value { font-size: 11pt; }
     .vbar-label { font-size: 9pt; margin-top: 8px; }
-
+ 
     /* Metrics row */
     .metrics { gap: 6px; }
     .metric { padding: 8px 10px; }
     .metric-label { font-size: 8pt; }
     .metric-value { font-size: 13pt; }
     .metric-sub { font-size: 8pt; }
+ 
+    /* Year-by-year table */
+    .year-table-section { padding: 12px 0 0; }
+    .year-table-card { border: 1px solid #ccc !important; padding: 12px 14px; }
+    .year-table-title { font-size: 11pt; }
+    .year-table-sub { font-size: 9pt; margin-bottom: 8px; }
+    .year-table-wrap {
+      overflow: visible !important;
+      max-height: none !important;
+      border: none !important;
+    }
+    .year-table { font-size: 8pt; min-width: 0; }
+    .year-table thead { position: static; }
+    .year-table th { padding: 4px 6px; font-size: 8pt; }
+    .year-table td { padding: 3px 6px; }
+    .year-table tr { page-break-inside: avoid; }
+    .year-table-legend { display: none; }
+ 
+    /* Tabs in print: hide nav, show whichever tab is active */
+    .tab-bar { display: none !important; }
+    .tab-content { display: none !important; }
+    .tab-content.active { display: flex !important; }
+    .insight-card { page-break-inside: avoid; padding: 14px 16px; }
+    .insight-card h3 { font-size: 11pt; }
+    .insight-sub { font-size: 9pt; margin-bottom: 12px; }
+    .donut-svg { width: 160px; height: 160px; }
+    .insight-takeaway { font-size: 9pt; padding: 10px 12px; }
   }
 </style>
 </head>
 <body>
-
+ 
 <div class="print-header" id="printHeader">
   <div class="print-title">Retirement Calculator</div>
   <div class="print-meta" id="printDate"></div>
 </div>
-
+ 
 <header>
   <div class="header-inner">
     <div class="brand">
@@ -716,21 +1358,21 @@
     <span class="header-meta">Educational tool · Not financial advice</span>
   </div>
 </header>
-
+ 
 <section class="hero">
   <h1>Retirement Calculator</h1>
   <h2>Calculate How Much You Need To Save, How Long Your Money Will Last, And How Soon You Can Retire</h2>
   <p>This retirement calculator assists in completing the standard calculations to forecast your savings needs, estimate your retirement income, and adjust for inflation. Enter your assumptions below. Change any value to see how it affects your whole plan!</p>
 </section>
-
+ 
 <main class="container">
-
+ 
   <aside class="card input-card">
     <div class="card-title">Your Inputs</div>
-
+ 
     <div class="field-group">
       <div class="section-heading">Personal Information</div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="currentAge">Enter age at end of current year <span class="info">i<span class="tip">Your age today. The younger you are, the more time compounding has to work for you.</span></span></label>
@@ -738,7 +1380,7 @@
         <div class="input-row"><input type="number" id="currentAge" value="22" min="15" max="75"><span class="suffix">Yrs</span></div>
         <input type="range" id="currentAgeSlider" min="15" max="75" value="22">
       </div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="retireAge">Enter age you plan to retire <span class="info">i<span class="tip">The age at which you'll stop working and start drawing down savings. Each extra year of work shortens your withdrawal horizon.</span></span></label>
@@ -746,7 +1388,7 @@
         <div class="input-row"><input type="number" id="retireAge" value="65" min="40" max="85"><span class="suffix">Yrs</span></div>
         <input type="range" id="retireAgeSlider" min="40" max="85" value="65">
       </div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="lifeExp">Enter life expectancy <span class="info">i<span class="tip">Nobody can know when they're going to die — but for planning purposes, conservative estimates run to age 90–95.</span></span></label>
@@ -755,10 +1397,10 @@
         <input type="range" id="lifeExpSlider" min="60" max="110" value="92">
       </div>
     </div>
-
+ 
     <div class="field-group">
       <div class="section-heading">Conventional Retirement Planning</div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="currentSavings">Current total savings / portfolio value <span class="info">i<span class="tip">The total amount you have already invested for retirement today. Exclude your emergency fund.</span></span></label>
@@ -766,16 +1408,16 @@
         <div class="input-row"><span class="prefix">$</span><input type="number" id="currentSavings" value="2000" min="0" step="500"></div>
         <input type="range" id="currentSavingsSlider" min="0" max="500000" value="2000" step="500">
       </div>
-
+ 
       <div class="field">
         <div class="field-head">
-          <label class="field-label" for="monthlySave">Monthly savings contributions <span class="info">i<span class="tip">The amount you save each month. A common rule of thumb is 15% of gross income.</span></span></label>
+          <label class="field-label">Monthly savings contributions <span class="info">i<span class="tip">Set up one or more contribution streams. Each can grow annually by % to model salary growth. Use start/stop ages to model contributions that change over time.</span></span></label>
         </div>
-        <div class="input-row"><span class="prefix">$</span><input type="number" id="monthlySave" value="500" min="0" step="50"></div>
-        <input type="range" id="monthlySaveSlider" min="0" max="3000" value="500" step="50">
-        <div class="field-note">Assumes contributions continue until retirement and are discontinued thereafter.</div>
+        <div class="contributions-list" id="contributionsList"></div>
+        <button type="button" class="stream-add" id="addContribution">+ Add another contribution</button>
+        <div class="field-note">Each stream contributes to your portfolio only between its start and stop ages. Use the Inc. percentage to model annual increases (e.g., salary growth).</div>
       </div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="annualNeed">Desired annual retirement income <span class="info">i<span class="tip">The amount you wish to have as household income each year during retirement, stated in today's dollars. Inflation is applied automatically.</span></span></label>
@@ -784,10 +1426,10 @@
         <input type="range" id="annualNeedSlider" min="6000" max="200000" value="48000" step="1000">
       </div>
     </div>
-
+ 
     <div class="field-group">
       <div class="section-heading">Investment Return &amp; Inflation</div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="returnRate">Pre-retirement ROI <span class="info">i<span class="tip">This is the key lever. Tune it up or down until your Surplus / Shortfall lands near zero — that's the average annual return your plan requires to succeed.</span></span></label>
@@ -795,7 +1437,7 @@
         <div class="input-row key-input"><input type="number" id="returnRate" value="7" min="0" max="15" step="0.1"><span class="suffix">%</span></div>
         <input type="range" id="returnRateSlider" min="0" max="15" value="7" step="0.1">
       </div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="retReturn">In-retirement ROI <span class="info">i<span class="tip">Most investors shift to safer assets during retirement, lowering the expected return on their portfolio.</span></span></label>
@@ -803,7 +1445,7 @@
         <div class="input-row key-input"><input type="number" id="retReturn" value="5" min="0" max="12" step="0.1"><span class="suffix">%</span></div>
         <input type="range" id="retReturnSlider" min="0" max="12" value="5" step="0.1">
       </div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="inflation">Estimated average annual inflation rate <span class="info">i<span class="tip">The historical average for U.S. inflation has approximated 3%. This erodes the buying power of every dollar you save.</span></span></label>
@@ -811,7 +1453,7 @@
         <div class="input-row"><input type="number" id="inflation" value="3" min="0" max="10" step="0.1"><span class="suffix">%</span></div>
         <input type="range" id="inflationSlider" min="0" max="10" value="3" step="0.1">
       </div>
-
+ 
       <div class="field">
         <div class="field-head">
           <label class="field-label" for="taxRate">Estimated tax rate during retirement <span class="info">i<span class="tip">Withdrawals from tax-deferred accounts are taxable income. This grosses up the amount you must withdraw to actually receive your desired retirement income.</span></span></label>
@@ -820,18 +1462,18 @@
         <input type="range" id="taxRateSlider" min="0" max="50" value="15" step="0.5">
       </div>
     </div>
-
+ 
     <button class="btn btn-primary btn-large" id="calcBtn">Calculate</button>
-
+ 
     <div class="actions">
       <button class="btn" id="resetBtn">Reset</button>
       <button class="btn" id="copyBtn">Copy summary</button>
       <button class="btn" id="pdfBtn">Save as PDF</button>
     </div>
   </aside>
-
+ 
   <section class="results">
-
+ 
     <!-- HEADLINE RESULT: Savings Surplus / Shortfall -->
     <div class="headline-result" id="headlineCard">
       <button class="btn btn-primary headline-action" id="pdfBtnTop">
@@ -842,65 +1484,228 @@
       <div class="caption" id="gapCaption">Adjust your inputs and click Calculate to see your result.</div>
       <div class="hint">A negative number indicates a shortfall.</div>
     </div>
-
-    <!-- VERTICAL BAR COMPARISON -->
-    <div class="bar-chart">
-      <h3>Retirement Savings Score</h3>
-      <div class="sub">A side-by-side comparison of what your plan produces against what your plan requires.</div>
-
-      <div class="vbar-wrap">
-        <div class="vbar-col">
-          <div class="vbar-value" id="nestEggValue">—</div>
-          <div class="vbar-stack">
-            <div class="vbar" id="savingsBar" style="height: 0%"></div>
+ 
+    <!-- TAB NAVIGATION -->
+    <nav class="tab-bar" role="tablist">
+      <button class="tab active" data-tab="plan" role="tab">Plan</button>
+      <button class="tab" data-tab="insights" role="tab">Insights</button>
+      <button class="tab" data-tab="goalseek" role="tab">Goal Seek</button>
+      <button class="tab" data-tab="compare" role="tab">Compare</button>
+      <button class="tab" data-tab="sensitivity" role="tab">Sensitivity</button>
+    </nav>
+ 
+    <!-- TAB: PLAN -->
+    <div id="tab-plan" class="tab-content active">
+ 
+      <!-- VERTICAL BAR COMPARISON -->
+      <div class="bar-chart">
+        <h3>Retirement Savings Score</h3>
+        <div class="sub">A side-by-side comparison of what your plan produces against what your plan requires.</div>
+ 
+        <div class="vbar-wrap">
+          <div class="vbar-col">
+            <div class="vbar-value" id="nestEggValue">—</div>
+            <div class="vbar-stack">
+              <div class="vbar" id="savingsBar" style="height: 0%"></div>
+            </div>
+            <div class="vbar-baseline"></div>
+            <div class="vbar-label">Projected Savings</div>
           </div>
-          <div class="vbar-baseline"></div>
-          <div class="vbar-label">Projected Savings</div>
-        </div>
-
-        <div class="vbar-col">
-          <div class="vbar-value" id="targetValue">—</div>
-          <div class="vbar-stack">
-            <div class="vbar needed" id="neededBar" style="height: 0%"></div>
+ 
+          <div class="vbar-col">
+            <div class="vbar-value" id="targetValue">—</div>
+            <div class="vbar-stack">
+              <div class="vbar needed" id="neededBar" style="height: 0%"></div>
+            </div>
+            <div class="vbar-baseline"></div>
+            <div class="vbar-label">Required Savings</div>
           </div>
-          <div class="vbar-baseline"></div>
-          <div class="vbar-label">Required Savings</div>
+        </div>
+ 
+        <div class="vbar-legend">
+          <span><span class="swatch" id="legendSavings" style="background: var(--accent)"></span>Your projected savings</span>
+          <span><span class="swatch" style="background: var(--text-2)"></span>Required savings</span>
         </div>
       </div>
-
-      <div class="vbar-legend">
-        <span><span class="swatch" id="legendSavings" style="background: var(--accent)"></span>Your projected savings</span>
-        <span><span class="swatch" style="background: var(--text-2)"></span>Required savings</span>
+ 
+      <!-- SUPPORTING METRICS -->
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-label">Additional Monthly Contribution Needed</div>
+          <div class="metric-value" id="extraNeeded">—</div>
+          <div class="metric-sub">to fully fund plan</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Required ROI to Fully Fund Plan</div>
+          <div class="metric-value" id="requiredROI">—</div>
+          <div class="metric-sub" id="requiredROISub">average annual return needed</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Money Lasts Until Age</div>
+          <div class="metric-value" id="lastsUntil">—</div>
+          <div class="metric-sub" id="lastsUntilSub">withdrawal horizon</div>
+        </div>
       </div>
+ 
     </div>
-
-    <!-- SUPPORTING METRICS -->
-    <div class="metrics">
-      <div class="metric">
-        <div class="metric-label">Additional Monthly Contribution Needed</div>
-        <div class="metric-value" id="extraNeeded">—</div>
-        <div class="metric-sub">to fully fund plan</div>
+ 
+    <!-- TAB: INSIGHTS -->
+    <div id="tab-insights" class="tab-content">
+ 
+      <!-- Insight 1: Where Your Nest Egg Comes From -->
+      <div class="insight-card">
+        <h3>Where Your Nest Egg Comes From</h3>
+        <p class="insight-sub">A breakdown of how much of your future portfolio came from your own paycheck versus the magic of compounding.</p>
+ 
+        <div class="donut-wrap">
+          <svg class="donut-svg" id="nestEggDonut" viewBox="0 0 200 200" aria-label="Nest egg breakdown donut chart"></svg>
+          <div class="donut-legend">
+            <div class="donut-legend-item">
+              <span class="donut-swatch" style="background: var(--green-bar)"></span>
+              <div class="donut-legend-text">
+                <div class="donut-legend-label">Investment Growth</div>
+                <div>
+                  <span class="donut-legend-value" id="growthValue">—</span>
+                  <span class="donut-legend-pct" id="growthPct">—</span>
+                </div>
+              </div>
+            </div>
+            <div class="donut-legend-item">
+              <span class="donut-swatch" style="background: var(--accent)"></span>
+              <div class="donut-legend-text">
+                <div class="donut-legend-label">Your Contributions</div>
+                <div>
+                  <span class="donut-legend-value" id="contribValue">—</span>
+                  <span class="donut-legend-pct" id="contribPct">—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="insight-takeaway" id="nestEggTakeaway">—</div>
       </div>
-      <div class="metric">
-        <div class="metric-label">Required ROI to Fully Fund Plan</div>
-        <div class="metric-value" id="requiredROI">—</div>
-        <div class="metric-sub" id="requiredROISub">average annual return needed</div>
+ 
+      <!-- Insight 2: The Cost of Waiting -->
+      <div class="insight-card">
+        <h3>The Cost of Waiting</h3>
+        <p class="insight-sub">What happens to your projected nest egg if you delay starting to save. Same monthly contribution, same returns — but fewer years for compounding to work.</p>
+ 
+        <div id="cowRows"></div>
+ 
+        <div class="insight-takeaway" id="cowTakeaway">—</div>
       </div>
-      <div class="metric">
-        <div class="metric-label">Money Lasts Until Age</div>
-        <div class="metric-value" id="lastsUntil">—</div>
-        <div class="metric-sub" id="lastsUntilSub">withdrawal horizon</div>
-      </div>
+ 
     </div>
-
+ 
+    <!-- TAB: GOAL SEEK -->
+    <div id="tab-goalseek" class="tab-content">
+ 
+      <div class="goal-intro">Flip the calculator around. Instead of asking "what's my gap?", ask "what would it take to fully fund my plan?" Each card holds your other inputs constant and solves for the single value that closes the Surplus / Shortfall to zero.</div>
+ 
+      <div class="goal-card">
+        <div>
+          <div class="goal-question">What monthly contribution do I need to fully fund my plan?</div>
+          <div class="goal-context">Holds your retirement age, return assumptions, and spending target constant. Solves for the monthly savings amount that makes Projected Savings equal Required Savings.</div>
+        </div>
+        <div class="goal-answer">
+          <div class="goal-value" id="gsMonthly">—</div>
+          <div class="goal-comparison" id="gsMonthlyDelta">—</div>
+        </div>
+      </div>
+ 
+      <div class="goal-card">
+        <div>
+          <div class="goal-question">What's the latest age I can retire and still fund my plan?</div>
+          <div class="goal-context">Keeps your current savings, monthly contributions, and spending target. Finds the latest retirement age that still produces full funding.</div>
+        </div>
+        <div class="goal-answer">
+          <div class="goal-value" id="gsAge">—</div>
+          <div class="goal-comparison" id="gsAgeDelta">—</div>
+        </div>
+      </div>
+ 
+      <div class="goal-card">
+        <div>
+          <div class="goal-question">What's the maximum annual income I can support in retirement?</div>
+          <div class="goal-context">Given your current inputs, finds the largest desired annual retirement income that your projected savings can fully fund.</div>
+        </div>
+        <div class="goal-answer">
+          <div class="goal-value" id="gsIncome">—</div>
+          <div class="goal-comparison" id="gsIncomeDelta">—</div>
+        </div>
+      </div>
+ 
+    </div>
+ 
+    <!-- TAB: COMPARE -->
+    <div id="tab-compare" class="tab-content">
+ 
+      <div class="compare-toolbar">
+        <h3>Compare two scenarios side-by-side</h3>
+        <p>Adjust your inputs to make one plan, save it as Scenario A. Then change any inputs, and save the new version as Scenario B. You'll see both plans rendered below — perfect for testing "what if I saved $200 more per month?" or "what if I retired 3 years later?"</p>
+        <div class="compare-buttons">
+          <button class="btn btn-primary" id="saveScenarioA">Save current as Scenario A</button>
+          <button class="btn btn-primary" id="saveScenarioB">Save current as Scenario B</button>
+          <button class="btn" id="clearScenarios">Clear both</button>
+        </div>
+      </div>
+ 
+      <div class="compare-grid">
+        <div id="scenarioASlot" class="scenario-card empty">No Scenario A saved yet. Adjust your inputs and click "Save current as Scenario A" above.</div>
+        <div id="scenarioBSlot" class="scenario-card empty">No Scenario B saved yet. Adjust your inputs and click "Save current as Scenario B" above.</div>
+      </div>
+ 
+    </div>
+ 
+    <!-- TAB: SENSITIVITY -->
+    <div id="tab-sensitivity" class="tab-content">
+ 
+      <div class="insight-card">
+        <h3>What Moves the Needle?</h3>
+        <p class="insight-sub">For each input, this shows how much your Surplus / Shortfall would improve from a single realistic change — holding everything else equal. Longer green bar means that lever has more impact. The biggest bar is the one most worth your attention.</p>
+ 
+        <div id="sensRows"></div>
+ 
+        <div class="insight-takeaway" id="sensTakeaway">—</div>
+      </div>
+ 
+    </div>
+ 
   </section>
 </main>
-
+ 
+<section class="year-table-section">
+  <div class="year-table-card">
+    <h3 class="year-table-title">Year-by-Year Projection</h3>
+    <p class="year-table-sub">A detailed breakdown of how your portfolio grows during the accumulation phase, then depletes during retirement. Scroll within the table to see all years.</p>
+    <div class="year-table-wrap">
+      <table class="year-table" id="yearTable">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Age</th>
+            <th>Year Begin Balance</th>
+            <th>Contributions</th>
+            <th>Pre-tax Withdrawal</th>
+            <th>Investment Return</th>
+            <th>Year End Balance</th>
+          </tr>
+        </thead>
+        <tbody id="yearTableBody"></tbody>
+      </table>
+    </div>
+    <div class="year-table-legend">
+      <span><span class="marker"></span>Purple line marks the start of retirement</span>
+    </div>
+  </div>
+</section>
+ 
 <div class="foot">
   <span>Educational model. All retirement calculations are mathematical projections of input assumptions — your estimate is only as accurate as the assumptions you make.</span>
   <span>v1.1</span>
 </div>
-
+ 
 <!-- PDF instructions modal -->
 <div class="modal-overlay" id="pdfModal" role="dialog" aria-labelledby="pdfModalTitle">
   <div class="modal">
@@ -918,43 +1723,85 @@
     </div>
   </div>
 </div>
-
+ 
 <script>
 const DEFAULTS = {
   currentAge: 22, retireAge: 65, lifeExp: 92,
-  currentSavings: 2000, monthlySave: 500, annualNeed: 48000,
+  currentSavings: 2000, annualNeed: 48000,
   returnRate: 7, retReturn: 5, inflation: 3, taxRate: 15
 };
-const inputs = { ...DEFAULTS };
-
+const DEFAULT_CONTRIBUTIONS = [
+  { amount: 500, increase: 0, startAge: 22, stopAge: 65 }
+];
+const inputs = { ...DEFAULTS, contributions: JSON.parse(JSON.stringify(DEFAULT_CONTRIBUTIONS)) };
+ 
 // ============== MATH ==============
 function project(overrides) {
   const inp = overrides ? { ...inputs, ...overrides } : inputs;
   const yearsToRetire = Math.max(0, inp.retireAge - inp.currentAge);
-  const yearsInRetire = Math.max(0, inp.lifeExp - inp.retireAge);
+  // yearsInRetire counts both endpoints: if you retire at 65 and plan to age 92,
+  // you spend money in years 65, 66, ..., 92 — that's 92 - 65 + 1 = 28 years.
+  // This matches Financial Mentor's convention.
+  const yearsInRetire = Math.max(0, inp.lifeExp - inp.retireAge + 1);
   const r = inp.returnRate / 100;
   const rRet = inp.retReturn / 100;
   const infl = inp.inflation / 100;
   const tax = inp.taxRate / 100;
-
-  // Accumulation phase: monthly compounding with contributions
-  let balance = inp.currentSavings;
   const monthlyR = Math.pow(1 + r, 1/12) - 1;
-
-  for (let y = 1; y <= yearsToRetire; y++) {
-    for (let m = 0; m < 12; m++) {
-      balance = balance * (1 + monthlyR) + inp.monthlySave;
-    }
+  const monthlyRetR = Math.pow(1 + rRet, 1/12) - 1;
+  const preTaxFactor = tax >= 1 ? 1 : 1 / (1 - tax);
+  const startYear = new Date().getFullYear();
+  const yearSeries = [];
+ 
+  // Helper: compute total monthly contribution at a given age, summing over all active streams
+  // Each stream's amount grows by its annual increase % from its startAge
+  function monthlyContribAt(ageAtYear) {
+    let total = 0;
+    (inp.contributions || []).forEach(c => {
+      if (ageAtYear >= c.startAge && ageAtYear < c.stopAge) {
+        const yearsActive = Math.max(0, ageAtYear - c.startAge);
+        const adjusted = c.amount * Math.pow(1 + (c.increase || 0) / 100, yearsActive);
+        total += adjusted;
+      }
+    });
+    return total;
   }
-
+ 
+  // Accumulation phase — track per-year details
+  // Uses ANNUAL compounding to match Financial Mentor's convention:
+  //  - Year 1 is treated as half-year (entered mid-year): return × 0.5 and contributions × 0.5
+  //  - Years 2+ are full annual compounding with end-of-year contributions
+  let balance = inp.currentSavings;
+  for (let y = 0; y < yearsToRetire; y++) {
+    const ageThisYear = inp.currentAge + y;
+    const monthlyContribThisYear = monthlyContribAt(ageThisYear);
+    const annualContrib = monthlyContribThisYear * 12;
+    const factor = (y === 0) ? 0.5 : 1.0;
+ 
+    const beginBalance = balance;
+    const yearReturn = beginBalance * r * factor;
+    const yearContrib = annualContrib * factor;
+    balance = beginBalance + yearReturn + yearContrib;
+ 
+    yearSeries.push({
+      year: startYear + y,
+      age: ageThisYear,
+      beginBalance: beginBalance,
+      contributions: yearContrib,
+      withdrawal: 0,
+      investmentReturn: yearReturn,
+      endBalance: balance,
+      isRetired: false
+    });
+  }
+ 
   const nestEgg = balance;
-
+ 
   // Required nest egg uses pre-tax need (gross-up by 1/(1-tax))
   const inflFactor = Math.pow(1 + infl, yearsToRetire);
   const realRet = (1 + rRet) / (1 + infl) - 1;
-  const preTaxFactor = tax >= 1 ? 1 : 1 / (1 - tax);
   const annualGrossNeedToday = inp.annualNeed * preTaxFactor;
-
+ 
   let requiredToday;
   if (Math.abs(realRet) < 1e-6) {
     requiredToday = annualGrossNeedToday * yearsInRetire;
@@ -963,27 +1810,46 @@ function project(overrides) {
   }
   requiredToday = Math.max(0, requiredToday);
   const requiredAtRetire = requiredToday * inflFactor;
-
-  // Withdrawal simulation to find when money runs out
-  let withdrawBalance = nestEgg;
-  const monthlyRetR = Math.pow(1 + rRet, 1/12) - 1;
-  let currentMonthlyGrossNeed = inp.annualNeed * preTaxFactor * inflFactor / 12;
+ 
+  // Withdrawal phase — annual compounding, end-of-year withdrawals (matches Financial Mentor)
+  let currentAnnualGrossNeed = inp.annualNeed * preTaxFactor * inflFactor;
   let lastsUntilAge = inp.retireAge;
   let exhausted = false;
-
-  for (let y = 1; y <= yearsInRetire; y++) {
-    if (exhausted) break;
-    for (let m = 0; m < 12; m++) {
-      withdrawBalance = withdrawBalance * (1 + monthlyRetR) - currentMonthlyGrossNeed;
-      if (withdrawBalance < 0) { exhausted = true; break; }
+ 
+  for (let y = 0; y < yearsInRetire; y++) {
+    const beginBalance = balance;
+    let yearReturn = 0;
+    let yearWithdrawal = 0;
+ 
+    if (!exhausted) {
+      yearReturn = beginBalance * rRet;
+      yearWithdrawal = currentAnnualGrossNeed;
+      balance = beginBalance + yearReturn - yearWithdrawal;
+      if (balance < 0) {
+        // Year-end overshoot — money runs out mid-year
+        balance = 0;
+        exhausted = true;
+      }
+      if (!exhausted) lastsUntilAge = inp.retireAge + y + 1;
     }
-    if (!exhausted) lastsUntilAge = inp.retireAge + y;
-    currentMonthlyGrossNeed *= (1 + infl);
+ 
+    yearSeries.push({
+      year: startYear + yearsToRetire + y,
+      age: inp.retireAge + y,
+      beginBalance: beginBalance,
+      contributions: 0,
+      withdrawal: yearWithdrawal,
+      investmentReturn: yearReturn,
+      endBalance: balance,
+      isRetired: true
+    });
+ 
+    if (!exhausted) currentAnnualGrossNeed *= (1 + infl);
   }
-
+ 
   const gap = nestEgg - requiredAtRetire;
-
-  // Additional monthly contribution required to close the gap
+ 
+  // Additional monthly contribution required to close the gap (still uses monthly model for the suggestion)
   let extraMonthly = 0;
   if (gap < 0 && yearsToRetire > 0) {
     const n = yearsToRetire * 12;
@@ -994,10 +1860,10 @@ function project(overrides) {
       extraMonthly = (-gap) * i / (Math.pow(1+i, n) - 1);
     }
   }
-
-  return { nestEgg, lastsUntilAge, exhausted, yearsToRetire, yearsInRetire, requiredAtRetire, gap, extraMonthly };
+ 
+  return { nestEgg, lastsUntilAge, exhausted, yearsToRetire, yearsInRetire, requiredAtRetire, gap, extraMonthly, yearSeries };
 }
-
+ 
 // Solve for the pre-retirement ROI that drives gap to zero (binary search)
 function solveRequiredROI() {
   if (inputs.retireAge <= inputs.currentAge) return null;
@@ -1012,7 +1878,7 @@ function solveRequiredROI() {
   }
   return { rate: (lo + hi) / 2, capped: false };
 }
-
+ 
 // ============== FORMAT ==============
 function fmtMoney(n) {
   if (!isFinite(n)) return "—";
@@ -1028,16 +1894,16 @@ function fmtFull(n) {
   if (!isFinite(n)) return "—";
   return (n < 0 ? "−$" : "$") + Math.round(Math.abs(n)).toLocaleString();
 }
-
+ 
 // ============== RENDER ==============
 function render() {
   const p = project();
-
+ 
   // Headline: Surplus / Shortfall
   const headlineCard = document.getElementById('headlineCard');
   const gapValue = document.getElementById('gapValue');
   const gapCaption = document.getElementById('gapCaption');
-
+ 
   gapValue.textContent = fmtFull(p.gap);
   headlineCard.classList.remove('is-surplus', 'is-shortfall');
   if (p.gap >= 0) {
@@ -1056,7 +1922,7 @@ function render() {
     const pct = p.requiredAtRetire > 0 ? Math.round(100 * p.nestEgg / p.requiredAtRetire) : 0;
     gapCaption.textContent = `Your savings cover about ${pct}% of what's needed. To close the gap, increase contributions, retire later, lower your desired income, or aim for a higher return.`;
   }
-
+ 
   // Vertical bar comparison
   const maxVal = Math.max(p.nestEgg, p.requiredAtRetire, 1);
   const savingsPct = Math.min(100, (p.nestEgg / maxVal) * 100);
@@ -1066,21 +1932,21 @@ function render() {
   document.getElementById('neededBar').style.height = neededPct + '%';
   document.getElementById('nestEggValue').textContent = fmtFull(p.nestEgg);
   document.getElementById('targetValue').textContent = fmtFull(p.requiredAtRetire);
-
+ 
   // Color the savings bar based on surplus/shortfall
   savingsBar.classList.remove('savings-pos', 'savings-neg');
   savingsBar.classList.add(p.gap >= 0 ? 'savings-pos' : 'savings-neg');
-
+ 
   // Match value-label color to its bar
   const nestEggValueEl = document.getElementById('nestEggValue');
   nestEggValueEl.style.color = p.gap >= 0 ? 'var(--green)' : 'var(--red)';
-
+ 
   // Update legend swatch to match current bar color
   const legendSwatch = document.getElementById('legendSavings');
   if (legendSwatch) {
     legendSwatch.style.background = p.gap >= 0 ? 'var(--green-bar)' : 'var(--red-bar)';
   }
-
+ 
   // Supporting metrics
   const extraEl = document.getElementById('extraNeeded');
   if (p.extraMonthly > 0) {
@@ -1090,7 +1956,7 @@ function render() {
     extraEl.textContent = "$0/mo";
     extraEl.className = "metric-value pos";
   }
-
+ 
   const roiSol = solveRequiredROI();
   const roiEl = document.getElementById('requiredROI');
   const roiSub = document.getElementById('requiredROISub');
@@ -1111,7 +1977,7 @@ function render() {
       roiEl.className = "metric-value neg";
     }
   }
-
+ 
   const lu = document.getElementById('lastsUntil');
   if (p.exhausted) {
     lu.textContent = p.lastsUntilAge;
@@ -1122,8 +1988,418 @@ function render() {
     lu.className = "metric-value pos";
     document.getElementById('lastsUntilSub').textContent = "money lasts to planned life expectancy";
   }
+ 
+  // Year-by-year breakdown table
+  renderYearTable(p.yearSeries);
+ 
+  // Insights tab content
+  renderNestEggBreakdown(p);
+  renderCostOfWaiting();
+ 
+  // Goal seek / Sensitivity tabs
+  renderGoalSeek();
+  renderSensitivity();
+  // Compare tab repaints based on saved scenarios + current state
+  renderCompare();
 }
-
+ 
+// ============== YEAR-BY-YEAR TABLE ==============
+function renderYearTable(yearSeries) {
+  const tbody = document.getElementById('yearTableBody');
+  const fmtCell = (n) => {
+    if (n === 0) return '<span class="muted">—</span>';
+    return '$' + Math.round(n).toLocaleString();
+  };
+ 
+  let html = '';
+  let prevRetired = false;
+  yearSeries.forEach((row) => {
+    const classes = [];
+    if (row.isRetired && !prevRetired) classes.push('retirement-start');
+    if (row.isRetired && row.endBalance === 0 && row.withdrawal === 0) classes.push('exhausted');
+    const cls = classes.length ? ` class="${classes.join(' ')}"` : '';
+ 
+    html += `<tr${cls}>` +
+      `<td>${row.year}</td>` +
+      `<td>${row.age}</td>` +
+      `<td>${fmtCell(row.beginBalance)}</td>` +
+      `<td>${fmtCell(row.contributions)}</td>` +
+      `<td>${fmtCell(row.withdrawal)}</td>` +
+      `<td>${fmtCell(row.investmentReturn)}</td>` +
+      `<td>${fmtCell(row.endBalance)}</td>` +
+      `</tr>`;
+ 
+    prevRetired = row.isRetired;
+  });
+  tbody.innerHTML = html;
+}
+ 
+// ============== INSIGHT: NEST EGG BREAKDOWN ==============
+function renderNestEggBreakdown(p) {
+  // Sum total contributions during accumulation (don't include starting savings as "growth")
+  const totalContrib = p.yearSeries
+    .filter(y => !y.isRetired)
+    .reduce((sum, y) => sum + y.contributions, 0);
+  const totalInvested = inputs.currentSavings + totalContrib;
+  const growth = Math.max(0, p.nestEgg - totalInvested);
+  const total = totalInvested + growth;
+ 
+  const growthPct = total > 0 ? growth / total : 0;
+  const investedPct = total > 0 ? totalInvested / total : 0;
+ 
+  // Draw donut
+  const svg = document.getElementById('nestEggDonut');
+  const cx = 100, cy = 100, r = 70, sw = 24;
+  const C = 2 * Math.PI * r; // circumference
+  const growthLen = C * growthPct;
+  const investedLen = C * investedPct;
+ 
+  // Center label: nest egg total
+  const centerValue = fmtMoney(p.nestEgg);
+ 
+  svg.innerHTML = `
+    <!-- Background ring -->
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--bg)" stroke-width="${sw}" />
+    <!-- Growth arc (green) -->
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none"
+      stroke="var(--green-bar)" stroke-width="${sw}"
+      stroke-dasharray="${growthLen.toFixed(2)} ${C.toFixed(2)}"
+      transform="rotate(-90 ${cx} ${cy})" stroke-linecap="butt" />
+    <!-- Contributions arc (purple) -->
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none"
+      stroke="var(--accent)" stroke-width="${sw}"
+      stroke-dasharray="${investedLen.toFixed(2)} ${C.toFixed(2)}"
+      stroke-dashoffset="${(-growthLen).toFixed(2)}"
+      transform="rotate(-90 ${cx} ${cy})" stroke-linecap="butt" />
+    <!-- Center label -->
+    <text class="donut-center-label" x="${cx}" y="${cy - 14}" text-anchor="middle">Total Nest Egg</text>
+    <text class="donut-center" x="${cx}" y="${cy + 10}" text-anchor="middle" font-size="22">${centerValue}</text>
+  `;
+ 
+  // Legend values
+  document.getElementById('growthValue').textContent = fmtFull(growth);
+  document.getElementById('growthPct').textContent = `(${Math.round(growthPct * 100)}%)`;
+  document.getElementById('contribValue').textContent = fmtFull(totalInvested);
+  document.getElementById('contribPct').textContent = `(${Math.round(investedPct * 100)}%)`;
+ 
+  // Takeaway
+  const takeaway = document.getElementById('nestEggTakeaway');
+  const growthRatio = totalInvested > 0 ? growth / totalInvested : 0;
+  if (p.nestEgg <= inputs.currentSavings) {
+    takeaway.innerHTML = `Your projected nest egg is ${fmtFull(p.nestEgg)}. With your current inputs, there isn't much room for growth to make a meaningful difference. Try increasing your monthly contributions or your time horizon to see compounding kick in.`;
+  } else {
+    takeaway.innerHTML = `Of your projected <strong>${fmtFull(p.nestEgg)}</strong> nest egg, <strong>${fmtFull(growth)}</strong> (${Math.round(growthPct * 100)}%) comes from investment growth. You personally contribute only <strong>${fmtFull(totalInvested)}</strong>. That means for every $1 you put in, the market is projected to add about $${growthRatio.toFixed(2)} more. <strong>Time and compounding do most of the work.</strong>`;
+  }
+}
+ 
+// ============== INSIGHT: COST OF WAITING ==============
+function renderCostOfWaiting() {
+  // Helper: shift all contribution streams' start/stop ages by N years
+  const shiftContribs = (years) =>
+    inputs.contributions.map(c => ({ ...c, startAge: c.startAge + years, stopAge: c.stopAge + years }));
+ 
+  const baseline = project();
+  const delayed5 = project({ currentAge: inputs.currentAge + 5, contributions: shiftContribs(5) });
+  const delayed10 = project({ currentAge: inputs.currentAge + 10, contributions: shiftContribs(10) });
+ 
+  const scenarios = [
+    { label: "Start saving now", subLabel: `current age ${inputs.currentAge}`, age: inputs.currentAge, value: baseline.nestEgg, cls: "best" },
+    { label: "Wait 5 years", subLabel: `start at age ${inputs.currentAge + 5}`, age: inputs.currentAge + 5, value: delayed5.nestEgg, cls: "late" },
+    { label: "Wait 10 years", subLabel: `start at age ${inputs.currentAge + 10}`, age: inputs.currentAge + 10, value: delayed10.nestEgg, cls: "latest" }
+  ];
+ 
+  const maxVal = Math.max(...scenarios.map(s => s.value), 1);
+ 
+  const html = scenarios.map(s => {
+    const pct = (s.value / maxVal) * 100;
+    return `
+      <div class="cow-row ${s.cls}">
+        <div>
+          <div class="cow-label">${s.label}</div>
+          <div class="cow-sub-label">${s.subLabel}</div>
+        </div>
+        <div class="cow-bar-track"><div class="cow-bar-fill" style="width: ${pct}%"></div></div>
+        <div class="cow-value">${fmtMoney(s.value)}</div>
+      </div>
+    `;
+  }).join('');
+ 
+  document.getElementById('cowRows').innerHTML = html;
+ 
+  // Takeaway
+  const cost10 = baseline.nestEgg - delayed10.nestEgg;
+  const cost5 = baseline.nestEgg - delayed5.nestEgg;
+  const takeaway = document.getElementById('cowTakeaway');
+  if (baseline.nestEgg <= 0 || delayed10.nestEgg < 0 || (inputs.currentAge + 10) >= inputs.retireAge) {
+    takeaway.innerHTML = `With your current age (${inputs.currentAge}) and retirement age (${inputs.retireAge}), waiting 10 years would leave little or no time to save. <strong>If you're starting late, every additional year of saving has enormous impact.</strong>`;
+  } else {
+    const pctLost = Math.round((cost10 / baseline.nestEgg) * 100);
+    takeaway.innerHTML = `Waiting 5 years to start saving costs you about <strong>${fmtFull(cost5)}</strong>. Waiting 10 years costs you <strong>${fmtFull(cost10)}</strong> — roughly <strong>${pctLost}%</strong> of your potential nest egg. <strong>Every year you wait, compounding has less time to work.</strong>`;
+  }
+}
+ 
+// ============== GOAL SEEK ==============
+// Generic binary search: find x such that gap(x) ≈ 0.
+// gapFn(x) takes the candidate value, returns the resulting gap.
+// Returns { value, capped } where capped means we hit search bounds.
+function solveForZeroGap(gapFn, lo, hi, monotonicIncreasing = true) {
+  const fLo = gapFn(lo), fHi = gapFn(hi);
+  // If both same sign, no root in bracket → capped
+  if (fLo > 0 && fHi > 0) return { value: monotonicIncreasing ? lo : hi, capped: true };
+  if (fLo < 0 && fHi < 0) return { value: monotonicIncreasing ? hi : lo, capped: true };
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const f = gapFn(mid);
+    if (Math.abs(f) < 1) return { value: mid, capped: false };
+    if (monotonicIncreasing ? (f > 0) : (f < 0)) hi = mid; else lo = mid;
+  }
+  return { value: (lo + hi) / 2, capped: false };
+}
+ 
+function renderGoalSeek() {
+  // (1) Solve for first stream's monthly contribution amount
+  // (Other streams remain unchanged; we adjust the first stream up/down to close gap)
+  const firstAmount = (inputs.contributions[0] && inputs.contributions[0].amount) || 0;
+  const baseContribs = inputs.contributions;
+  const monthlySol = solveForZeroGap(
+    (x) => project({
+      contributions: baseContribs.map((c, i) => i === 0 ? { ...c, amount: x } : c)
+    }).gap,
+    0, 20000, true
+  );
+  const gsMonthly = document.getElementById('gsMonthly');
+  const gsMonthlyDelta = document.getElementById('gsMonthlyDelta');
+  if (monthlySol.capped && monthlySol.value >= 20000) {
+    gsMonthly.textContent = ">$20,000/mo";
+    gsMonthly.className = "goal-value unreachable";
+    gsMonthlyDelta.textContent = "current plan needs more than the calculator can solve";
+  } else if (monthlySol.value <= firstAmount) {
+    gsMonthly.textContent = "Already there";
+    gsMonthly.className = "goal-value";
+    gsMonthly.style.color = "var(--green)";
+    gsMonthlyDelta.textContent = `your ${fmtFull(firstAmount)}/mo already fully funds the plan`;
+  } else {
+    gsMonthly.style.color = "";
+    gsMonthly.textContent = fmtFull(monthlySol.value) + "/mo";
+    gsMonthly.className = "goal-value";
+    const delta = monthlySol.value - firstAmount;
+    gsMonthlyDelta.textContent = `${fmtFull(delta)}/mo more than your Stream 1's current ${fmtFull(firstAmount)}/mo`;
+  }
+ 
+  // (2) Solve for retirement age (later retirement → more saving years, less withdrawal years → smaller gap → eventually positive)
+  // Note: at higher retireAge, gap generally goes up (better). So increasing function.
+  const ageSol = solveForZeroGap(
+    (x) => project({ retireAge: x }).gap, inputs.currentAge + 1, inputs.lifeExp - 1, true
+  );
+  const gsAge = document.getElementById('gsAge');
+  const gsAgeDelta = document.getElementById('gsAgeDelta');
+  if (ageSol.capped) {
+    if (project({ retireAge: inputs.lifeExp - 1 }).gap < 0) {
+      gsAge.textContent = "Not reachable";
+      gsAge.className = "goal-value unreachable";
+      gsAgeDelta.textContent = "even working until life expectancy can't fully fund the plan";
+    } else {
+      gsAge.textContent = "Already there";
+      gsAge.className = "goal-value";
+      gsAge.style.color = "var(--green)";
+      gsAgeDelta.textContent = `retiring at ${inputs.retireAge} or earlier already fully funds the plan`;
+    }
+  } else {
+    gsAge.style.color = "";
+    const roundedAge = Math.ceil(ageSol.value);
+    gsAge.textContent = "age " + roundedAge;
+    gsAge.className = "goal-value";
+    const delta = roundedAge - inputs.retireAge;
+    if (delta > 0) {
+      gsAgeDelta.textContent = `${delta} year${delta === 1 ? '' : 's'} later than your planned age ${inputs.retireAge}`;
+    } else if (delta < 0) {
+      gsAgeDelta.textContent = `${Math.abs(delta)} year${Math.abs(delta) === 1 ? '' : 's'} earlier than your planned age ${inputs.retireAge}`;
+    } else {
+      gsAgeDelta.textContent = `exactly your planned retirement age`;
+    }
+  }
+ 
+  // (3) Solve for max annual retirement income (more income → bigger required → smaller gap → eventually negative)
+  // Decreasing function. So we want to find the largest income with gap >= 0.
+  const incomeSol = solveForZeroGap(
+    (x) => project({ annualNeed: x }).gap, 0, 500000, false
+  );
+  const gsIncome = document.getElementById('gsIncome');
+  const gsIncomeDelta = document.getElementById('gsIncomeDelta');
+  if (incomeSol.value <= 0) {
+    gsIncome.textContent = "$0/yr";
+    gsIncome.className = "goal-value unreachable";
+    gsIncomeDelta.textContent = "your projected savings can't support any retirement income";
+  } else {
+    gsIncome.style.color = "";
+    gsIncome.textContent = fmtFull(incomeSol.value) + "/yr";
+    gsIncome.className = "goal-value";
+    const delta = incomeSol.value - inputs.annualNeed;
+    if (delta > 0) {
+      gsIncomeDelta.textContent = `${fmtFull(delta)}/yr more than your desired ${fmtFull(inputs.annualNeed)}/yr`;
+    } else {
+      gsIncomeDelta.textContent = `${fmtFull(Math.abs(delta))}/yr less than your desired ${fmtFull(inputs.annualNeed)}/yr`;
+    }
+  }
+}
+ 
+// ============== SENSITIVITY ==============
+function renderSensitivity() {
+  const baseline = project();
+  const baseGap = baseline.gap;
+ 
+  // Define realistic, comparable bumps
+  const tests = [
+    { label: "Save $100 more per month", subLabel: `Stream 1: ${fmtFull((inputs.contributions[0] && inputs.contributions[0].amount) || 0)} → ${fmtFull(((inputs.contributions[0] && inputs.contributions[0].amount) || 0) + 100)}/mo`,
+      newGap: project({
+        contributions: inputs.contributions.map((c, i) => i === 0 ? { ...c, amount: c.amount + 100 } : c)
+      }).gap },
+    { label: "Retire 1 year later", subLabel: `age ${inputs.retireAge} → ${inputs.retireAge + 1}`,
+      newGap: project({ retireAge: inputs.retireAge + 1 }).gap },
+    { label: "Spend $3,600 less per year", subLabel: `${fmtFull(inputs.annualNeed)} → ${fmtFull(inputs.annualNeed - 3600)}/yr`,
+      newGap: project({ annualNeed: inputs.annualNeed - 3600 }).gap },
+    { label: "Earn 1% higher return", subLabel: `${inputs.returnRate}% → ${(inputs.returnRate + 1).toFixed(1)}%`,
+      newGap: project({ returnRate: inputs.returnRate + 1 }).gap },
+    { label: "Save $5,000 more right now", subLabel: `${fmtFull(inputs.currentSavings)} → ${fmtFull(inputs.currentSavings + 5000)}`,
+      newGap: project({ currentSavings: inputs.currentSavings + 5000 }).gap },
+    { label: "Reduce inflation by 0.5%", subLabel: `${inputs.inflation}% → ${(inputs.inflation - 0.5).toFixed(1)}%`,
+      newGap: project({ inflation: Math.max(0, inputs.inflation - 0.5) }).gap }
+  ];
+ 
+  // Compute improvement (delta gap from baseline)
+  tests.forEach(t => { t.improvement = t.newGap - baseGap; });
+  tests.sort((a, b) => b.improvement - a.improvement);
+ 
+  const maxImpact = Math.max(...tests.map(t => Math.abs(t.improvement)), 1);
+ 
+  const html = tests.map(t => {
+    const pct = (Math.abs(t.improvement) / maxImpact) * 100;
+    const isNeg = t.improvement < 0;
+    const sign = t.improvement >= 0 ? '+' : '−';
+    return `
+      <div class="sens-row">
+        <div>
+          <div class="sens-label">${t.label}</div>
+          <div class="sens-sub-label">${t.subLabel}</div>
+        </div>
+        <div class="sens-bar-track"><div class="sens-bar-fill${isNeg ? ' negative' : ''}" style="width: ${pct}%"></div></div>
+        <div class="sens-value ${isNeg ? 'negative' : 'positive'}">${sign}${fmtMoney(Math.abs(t.improvement))}</div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('sensRows').innerHTML = html;
+ 
+  // Takeaway: name the biggest lever
+  const top = tests[0];
+  const takeaway = document.getElementById('sensTakeaway');
+  takeaway.innerHTML = `Of these realistic changes, <strong>"${top.label.toLowerCase()}"</strong> moves your gap the most — by about <strong>${fmtFull(Math.abs(top.improvement))}</strong>. That's where to focus first. Notice how some levers (like investment return) often have outsized impact over long horizons, while others (like saving a bit more each month) compound steadily.`;
+}
+ 
+// ============== COMPARE SCENARIOS ==============
+const scenarios = { A: null, B: null };
+ 
+function captureScenario() {
+  const p = project();
+  return {
+    inputs: { ...inputs, contributions: JSON.parse(JSON.stringify(inputs.contributions)) },
+    nestEgg: p.nestEgg,
+    requiredAtRetire: p.requiredAtRetire,
+    gap: p.gap,
+    lastsUntilAge: p.lastsUntilAge,
+    exhausted: p.exhausted,
+    extraMonthly: p.extraMonthly
+  };
+}
+ 
+function scenarioCardHtml(s, label, klass, tagClass, slotId) {
+  if (!s) {
+    return `<div id="${slotId}" class="scenario-card empty">No Scenario ${label} saved yet. Adjust your inputs and click "Save current as Scenario ${label}" above.</div>`;
+  }
+  const gapClass = s.gap >= 0 ? 'pos' : 'neg';
+  const fmtAge = s.exhausted ? `${s.lastsUntilAge}` : `${s.inputs.lifeExp}+`;
+  return `
+    <div id="${slotId}" class="scenario-card ${klass}">
+      <button class="scenario-clear" data-clear="${label}">Clear</button>
+      <span class="scenario-tag ${tagClass}">Scenario ${label}</span>
+      <div class="scenario-section-head">Surplus / Shortfall</div>
+      <div class="scenario-gap ${gapClass}">${fmtFull(s.gap)}</div>
+ 
+      <div class="scenario-section-head">Key Results</div>
+      <ul class="scenario-list">
+        <li><span class="lbl">Projected Savings</span><span class="val">${fmtFull(s.nestEgg)}</span></li>
+        <li><span class="lbl">Required Savings</span><span class="val">${fmtFull(s.requiredAtRetire)}</span></li>
+        <li><span class="lbl">Money Lasts Until</span><span class="val">age ${fmtAge}</span></li>
+        <li><span class="lbl">Extra to Fully Fund</span><span class="val">${s.extraMonthly > 0 ? fmtFull(s.extraMonthly) + '/mo' : '$0/mo'}</span></li>
+      </ul>
+ 
+      <div class="scenario-section-head">Inputs</div>
+      <ul class="scenario-list">
+        <li><span class="lbl">Current age</span><span class="val">${s.inputs.currentAge}</span></li>
+        <li><span class="lbl">Retirement age</span><span class="val">${s.inputs.retireAge}</span></li>
+        <li><span class="lbl">Life expectancy</span><span class="val">${s.inputs.lifeExp}</span></li>
+        <li><span class="lbl">Current savings</span><span class="val">${fmtFull(s.inputs.currentSavings)}</span></li>
+        <li><span class="lbl">Monthly contribution</span><span class="val">${
+          s.inputs.contributions && s.inputs.contributions.length > 0
+            ? (s.inputs.contributions.length === 1
+                ? fmtFull(s.inputs.contributions[0].amount) + '/mo'
+                : s.inputs.contributions.length + ' streams')
+            : '$0/mo'
+        }</span></li>
+        <li><span class="lbl">Annual income need</span><span class="val">${fmtFull(s.inputs.annualNeed)}</span></li>
+        <li><span class="lbl">Pre-retirement ROI</span><span class="val">${s.inputs.returnRate}%</span></li>
+        <li><span class="lbl">In-retirement ROI</span><span class="val">${s.inputs.retReturn}%</span></li>
+        <li><span class="lbl">Inflation</span><span class="val">${s.inputs.inflation}%</span></li>
+        <li><span class="lbl">Tax rate</span><span class="val">${s.inputs.taxRate}%</span></li>
+      </ul>
+    </div>
+  `;
+}
+ 
+function renderCompare() {
+  const grid = document.querySelector('.compare-grid');
+  if (!grid) return;
+  grid.innerHTML =
+    scenarioCardHtml(scenarios.A, 'A', 'scenario-a', 'a', 'scenarioASlot') +
+    scenarioCardHtml(scenarios.B, 'B', 'scenario-b', 'b', 'scenarioBSlot');
+ 
+  // Wire up clear buttons
+  grid.querySelectorAll('.scenario-clear').forEach(btn => {
+    btn.addEventListener('click', () => {
+      scenarios[btn.dataset.clear] = null;
+      renderCompare();
+    });
+  });
+}
+ 
+document.getElementById('saveScenarioA').addEventListener('click', () => {
+  scenarios.A = captureScenario();
+  renderCompare();
+});
+document.getElementById('saveScenarioB').addEventListener('click', () => {
+  scenarios.B = captureScenario();
+  renderCompare();
+});
+document.getElementById('clearScenarios').addEventListener('click', () => {
+  scenarios.A = null;
+  scenarios.B = null;
+  renderCompare();
+});
+ 
+// ============== TAB SWITCHING ==============
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+    document.querySelectorAll('.tab-content').forEach(c =>
+      c.classList.toggle('active', c.id === 'tab-' + target));
+    // Year table only relevant on Plan tab
+    const yearTableSection = document.querySelector('.year-table-section');
+    if (yearTableSection) {
+      yearTableSection.style.display = (target === 'plan') ? '' : 'none';
+    }
+  });
+});
+ 
 // ============== BINDINGS ==============
 function bindPair(id) {
   const num = document.getElementById(id);
@@ -1140,7 +2416,76 @@ function bindPair(id) {
   if (slider) slider.addEventListener('input', e => apply(e.target.value));
 }
 Object.keys(DEFAULTS).forEach(bindPair);
-
+ 
+// ============== CONTRIBUTION STREAMS ==============
+function renderContributions() {
+  const list = document.getElementById('contributionsList');
+  if (!list) return;
+  list.innerHTML = inputs.contributions.map((c, idx) => `
+    <div class="stream-card" data-idx="${idx}">
+      <div class="stream-grid">
+        <div class="stream-field">
+          <label>Amount</label>
+          <div class="stream-input"><span class="prefix">$</span><input type="number" data-field="amount" value="${c.amount}" min="0" step="50" autocomplete="off"></div>
+        </div>
+        <div class="stream-field">
+          <label>Inc.</label>
+          <div class="stream-input"><input type="number" data-field="increase" value="${c.increase}" min="0" max="20" step="0.5" autocomplete="off"><span class="suffix">%/yr</span></div>
+        </div>
+        <div class="stream-field">
+          <label>Start age</label>
+          <div class="stream-input"><input type="number" data-field="startAge" value="${c.startAge}" min="15" max="100" autocomplete="off"><span class="suffix">yrs</span></div>
+        </div>
+        <div class="stream-field">
+          <label>Stop age</label>
+          <div class="stream-input"><input type="number" data-field="stopAge" value="${c.stopAge}" min="15" max="100" autocomplete="off"><span class="suffix">yrs</span></div>
+        </div>
+      </div>
+      <div class="stream-actions">
+        <span class="stream-num">Stream ${idx + 1}</span>
+        ${inputs.contributions.length > 1 ? `<button class="stream-remove" data-remove="${idx}">Remove</button>` : '<span></span>'}
+      </div>
+    </div>
+  `).join('');
+ 
+  // Wire field inputs
+  list.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', (e) => {
+      const card = e.target.closest('.stream-card');
+      const idx = parseInt(card.dataset.idx, 10);
+      const field = e.target.dataset.field;
+      const val = parseFloat(e.target.value);
+      if (isFinite(val) && idx >= 0 && idx < inputs.contributions.length) {
+        inputs.contributions[idx][field] = val;
+        render();
+      }
+    });
+  });
+ 
+  // Wire remove buttons
+  list.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.remove, 10);
+      inputs.contributions.splice(idx, 1);
+      renderContributions();
+      render();
+    });
+  });
+}
+ 
+document.getElementById('addContribution').addEventListener('click', () => {
+  const last = inputs.contributions[inputs.contributions.length - 1];
+  const startAge = last ? Math.min(last.stopAge, inputs.retireAge) : inputs.currentAge;
+  inputs.contributions.push({
+    amount: 500,
+    increase: 0,
+    startAge: startAge,
+    stopAge: inputs.retireAge
+  });
+  renderContributions();
+  render();
+});
+ 
 // Calculate button — re-renders, gives subtle visual confirmation
 document.getElementById('calcBtn').addEventListener('click', () => {
   render();
@@ -1150,40 +2495,46 @@ document.getElementById('calcBtn').addEventListener('click', () => {
   setTimeout(() => { card.style.transform = ''; }, 200);
   card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
-
+ 
 document.getElementById('resetBtn').addEventListener('click', () => {
   Object.assign(inputs, DEFAULTS);
+  inputs.contributions = JSON.parse(JSON.stringify(DEFAULT_CONTRIBUTIONS));
   for (const k in DEFAULTS) {
     const el = document.getElementById(k);
     if (el) el.value = DEFAULTS[k];
     const sl = document.getElementById(k + "Slider");
     if (sl) sl.value = DEFAULTS[k];
   }
+  renderContributions();
   render();
 });
-
+ 
 document.getElementById('copyBtn').addEventListener('click', async () => {
   const p = project();
   const roiSol = solveRequiredROI();
   const roiText = roiSol && !roiSol.capped ? (roiSol.rate * 100).toFixed(2) + "%" : "outside range";
+  const contribLines = inputs.contributions.map((c, i) =>
+    `    Stream ${i + 1}: ${fmtFull(c.amount)}/mo, ${c.increase}%/yr increase, age ${c.startAge}–${c.stopAge}`
+  ).join("\n");
   const text = `Retirement Calculator — Summary
-
+ 
 Personal Information
   Current age: ${inputs.currentAge}
   Retirement age: ${inputs.retireAge}
   Life expectancy: ${inputs.lifeExp}
-
+ 
 Conventional Retirement Planning
   Current total savings: ${fmtFull(inputs.currentSavings)}
-  Monthly savings contribution: ${fmtFull(inputs.monthlySave)}
+  Monthly savings contributions:
+${contribLines}
   Desired annual retirement income: ${fmtFull(inputs.annualNeed)}
-
+ 
 Assumptions
   Pre-retirement ROI: ${inputs.returnRate}%
   In-retirement ROI: ${inputs.retReturn}%
   Inflation rate: ${inputs.inflation}%
   Tax rate during retirement: ${inputs.taxRate}%
-
+ 
 Results
   Projected Savings:                 ${fmtFull(p.nestEgg)}
   Required Savings:                  ${fmtFull(p.requiredAtRetire)}
@@ -1199,18 +2550,18 @@ Results
     setTimeout(() => { btn.textContent = orig; }, 1500);
   } catch(e) {}
 });
-
+ 
 // Save as PDF — first show instructions modal, then trigger browser print-to-PDF
 function openPdfModal() {
   document.getElementById('pdfModal').classList.add('open');
 }
 document.getElementById('pdfBtn').addEventListener('click', openPdfModal);
 document.getElementById('pdfBtnTop').addEventListener('click', openPdfModal);
-
+ 
 document.getElementById('pdfCancel').addEventListener('click', () => {
   document.getElementById('pdfModal').classList.remove('open');
 });
-
+ 
 document.getElementById('pdfContinue').addEventListener('click', () => {
   // Close modal first so it isn't captured in the print preview
   document.getElementById('pdfModal').classList.remove('open');
@@ -1221,25 +2572,27 @@ document.getElementById('pdfContinue').addEventListener('click', () => {
   // Tiny delay so the DOM reflects the modal closing before print opens
   setTimeout(() => window.print(), 80);
 });
-
+ 
 // Click outside the modal to close
 document.getElementById('pdfModal').addEventListener('click', (e) => {
   if (e.target.id === 'pdfModal') {
     document.getElementById('pdfModal').classList.remove('open');
   }
 });
-
+ 
 // Force-reset all inputs to defaults on every page load — prevents browser
 // from restoring cached values from a previous session.
 document.querySelectorAll('input').forEach(el => el.setAttribute('autocomplete', 'off'));
 Object.assign(inputs, DEFAULTS);
+inputs.contributions = JSON.parse(JSON.stringify(DEFAULT_CONTRIBUTIONS));
 for (const k in DEFAULTS) {
   const el = document.getElementById(k);
   if (el) el.value = DEFAULTS[k];
   const sl = document.getElementById(k + "Slider");
   if (sl) sl.value = DEFAULTS[k];
 }
-
+renderContributions();
+ 
 render();
 </script>
 </body>
